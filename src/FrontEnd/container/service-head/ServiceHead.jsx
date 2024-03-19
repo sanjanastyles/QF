@@ -13,11 +13,6 @@ export const ServiceHead = (props) => {
           <img src={props.img} alt="service_img" />
         </div>
       </div>
-      <div className={ServiceHeadStyles.serviceHead_container_button}>
-        <Link to={`/checkout/${props.category}/${props.title}`}>
-          <button className="button">Book Service</button>
-        </Link>
-      </div>
     </>
   );
 };

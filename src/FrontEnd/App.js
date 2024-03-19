@@ -39,6 +39,7 @@ import Success from './pages/Success/Success';
 
 import UserDashboard from './pages/user-dashboard/userDashboard';
 import OTPpage from './QF/pages/otp/otppage';
+import ProfilePage from './QF/pages/professional/Dashboard/dashboard';
 
 
 
@@ -59,15 +60,15 @@ function App() {
       <Navbar />
       <ScrollToTop />
       <Routes>
+        {/* Common Routes */}
         <Route exact path="/" element={<Home />} />
         <Route path="/SignIn" element={<SignIn />} />
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/SignUp/otp" element={<OTPpage />} />
         <Route path="/Categories" element={<ServicesCategories />} />
         <Route path="/Contact-Us" element={<ContactUs />} />
-        <Route path="/checkout/:category/:service" element={<CheckoutForm />} />
+        <Route path="/checkout/:proId/:category" element={<CheckoutForm />} />
         <Route path="/Orders" element={<ClientOrders />} />
-        <Route path="/admin-dashboard" element={<AdminHome />} />
 
         <Route path="/users" element={<UserList />} />
         <Route path="/user/:userId" element={<User />} />
@@ -75,13 +76,19 @@ function App() {
         <Route path="/service/:ServiceId" element={<Service />} />
         <Route path="/newService" element={<NewService />} />
 
-        <Route path="/professionals" element={<ProfessionalList />} />
-        <Route path="/professional/:professionalId" element={<Professional />} />
-        <Route path="/createProfessional" element={<NewProfessional />} />
 
+        {/* Professionals */}
+        <Route path="/professionals/dashboard/:id/:serviceId" element={<ProfilePage />} />
+        <Route path="/professional/:professionalId" element={<Professional />} />
+        <Route path="/online/professionals" element={<ProfessionalList />} />
+
+        {/* AdminFlow */}
         <Route path="/admins" element={<AdminList />} />
         <Route path="/admin/:adminId" element={<Admin />} />
         <Route path="/newAdmin" element={<NewAdmin />} />
+        <Route path="/createProfessional" element={<NewProfessional />} />
+        <Route path="/admin-dashboard" element={<AdminHome />} />
+
 
         {/* Link in pages/services/ServicesCategories*/}
         <Route path="/Categories/:category" element={<AllServices />} />

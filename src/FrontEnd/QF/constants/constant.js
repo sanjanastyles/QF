@@ -10,3 +10,5 @@ export const LOGIN_PATH = `${SERVICEMAN_BASE_PATH}/login`
 
 export const CONTACT_FORM_PATH = `${COMMON_BASE_PATH}/contact`
 export const ALL_SERVICE_PATH = `${COMMON_BASE_PATH}/service`
+export const PRO_PAGE_PATH = `${COMMON_BASE_PATH}/profile`
+export const BOOKING_PAGE_PATH = `${COMMON_BASE_PATH}/booking`

@@ -29,28 +29,42 @@ export async function getData(url = '') {
     referrerPolicy: 'no-referrer',
   });
   return response.json();
+
+}export const dateFormatter = (dateString) => {
+  const [year, month, day] = dateString.split('T')[0].split('-');
+  const formattedDate = `${parseInt(year)}-${parseInt(month)}-${parseInt(day)}`;
+  return formattedDate;
+};
+export const dateFormatterWithDayName = (dateString) => {
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  const date = new Date(dateString);
+  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const formattedDate = date.toLocaleDateString('en-US', options);
+  const day = days[date.getDay()];
+  return `${formattedDate} (${day})`;
+};
+
+export function setCookie(name, value, expire) {
+  let cookieString;
+  if (expire) {
+    const expirationDate = new Date();
+    expirationDate.setDate(expirationDate.getDate() + 7);
+    cookieString = `${name}=${value}; expires=${expirationDate.toUTCString()}; path=/;`;
+  } else {
+    cookieString = `${name}=${value}; path=/;`;
+  }
+  document.cookie = cookieString;
 }
-// export function setCookie(name, value, expire) {
-//   let cookieString;
-//   if (expire) {
-//     const expirationDate = new Date();
-//     expirationDate.setDate(expirationDate.getDate() + 7);
-//     cookieString = `${name}=${value}; expires=${expirationDate.toUTCString()}; path=/;`;
-//   } else {
-//     cookieString = `${name}=${value}; path=/;`;
-//   }
-//   document.cookie = cookieString;
-// }
-// export function getCookie(name) {
-//   const cookies = document.cookie.split(';');
-//   for (const cookie of cookies) {
-//     const [cookieName, cookieValue] = cookie.trim().split('=');
-//     if (cookieName === name) {
-//       return decodeURIComponent(cookieValue);
-//     }
-//   }
-//   return null;
-// }
+export function getCookie(name) {
+  const cookies = document.cookie.split(';');
+  for (const cookie of cookies) {
+    const [cookieName, cookieValue] = cookie.trim().split('=');
+    if (cookieName === name) {
+      return decodeURIComponent(cookieValue);
+    }
+  }
+  return null;
+}
 // export function deleteAllCookies() {
 //   const cookies = document.cookie.split(';');
 

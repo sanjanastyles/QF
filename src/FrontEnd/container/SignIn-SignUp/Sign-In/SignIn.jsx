@@ -4,13 +4,11 @@ import { FormInput } from "../Form-Inputs/FormInput";
 // import AuthContext from "../../../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { postData } from "../../../QF/utils/utils";
+import { postData, setCookie } from "../../../QF/utils/utils";
 import { LOGIN_PATH } from "../../../QF/constants/constant";
 
 export const SignIn = () => {
   const navigate = useNavigate();
-  // const { setAuth } = useContext(AuthContext);
-
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -34,7 +32,6 @@ export const SignIn = () => {
       errorMessage:
         "Password should be 8-20 characters and include at least 1 letter, 1 number and 1 special character!",
       label: "Password",
-      // pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
       required: true,
     },
   ];
@@ -43,13 +40,18 @@ export const SignIn = () => {
     e.preventDefault();
 
     try {
-      const response = postData(LOGIN_PATH, { email: values.email, password: values.password })
+      const response = postData(LOGIN_PATH, { email: values.email, password: values.password }).then(e => {
+        console.log(e);
+        if (e.code === 200) {
+          setCookie('userId', e.data._id)
+          localStorage.setItem("response", JSON.stringify(e?.data));
+        }
+      }).catch(e => { throw new Error("SOMETHING WRONG"); })
       // window.location.reload();
       navigate("/");
       toast.success("Login Successfull");
-      if(response.code < 300)
-      localStorage.setItem("response", JSON.stringify(response?.data));
-    } catch (err) {
+    }
+    catch (err) {
       if (!err?.response) {
         toast.error("No Server Response");
       } else if (err.response?.status === 400) {

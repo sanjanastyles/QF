@@ -1,7 +1,7 @@
 import { ServicesCheckout } from '../ServicesCheckout';
 import { serviceData } from '../../../Data/ServicesData';
 import { Card, CardContent, Grid, Typography, Box } from "@mui/material";
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getData } from '../../../QF/utils/utils';
 import { ALL_SERVICE_PATH } from '../../../QF/constants/constant';
@@ -14,7 +14,7 @@ const ServiceManListHeading = () => {
     );
 };
 
-const ServiceManCard = ({ name, specialization, email, jobs }) => {
+const ServiceManCard = ({ name, specialization, email, jobs, id , category}) => {
     return (
         <Card
             sx={{
@@ -30,18 +30,19 @@ const ServiceManCard = ({ name, specialization, email, jobs }) => {
             }}
         >
             <CardContent sx={{ textAlign: "center" }}>
-                <Typography variant="h5" component="h2" gutterBottom>
-                    {name}
-                </Typography>
-                <Typography variant="h5" component="h2" gutterBottom>
-                    {email}
-                </Typography>
-                {/* {specialization.map(({ name }) => <Typography color="textSecondary" component="h2">{name}</Typography>
+                <Link to={`/professionals/dashboard/${id}/${category}`}>
+                    <Typography variant="h5" component="h2" gutterBottom>
+                        {name}
+                    </Typography>
+                    <Typography variant="h5" component="h2" gutterBottom>
+                        {email}
+                    </Typography>
+                    {/* {specialization.map(({ name }) => <Typography color="textSecondary" component="h2">{name}</Typography>
                 )} */}
-                <Typography variant="h5" component="p" gutterBottom>
-                    Number of Past Jobs - {jobs?.length}
-                </Typography>
-
+                    <Typography variant="h5" component="p" gutterBottom>
+                        Number of Past Jobs - {jobs?.length}
+                    </Typography>
+                </Link>
             </CardContent>
         </Card>
     );
@@ -73,12 +74,12 @@ const ApplianceRepairServiceCheckout = ({ service, category }) => {
             >
                 <ServiceManListHeading />
                 <Grid container spacing={3}>
-                    {data.length > 0 && data.map(({ name, jobs, email, jobId }, index) => <Grid item xs={12} sm={6} md={4} key={index}>
-                        <ServiceManCard name={name} specialization={jobs} email={email} jobs={jobId} />
+                    {data.length > 0 && data.map(({ _id, name, jobs, email, jobId }, index) => <Grid item xs={12} sm={6} md={4} key={index}>
+                        <ServiceManCard name={name} specialization={jobs} email={email} jobs={jobId} id={_id} category={category}/>
                     </Grid>)}
                 </Grid>
             </Box>
-            <ServicesCheckout title={service.desc} desc={service.checkout_desc} img={service.img} category="Appliance Repair" />
+            <ServicesCheckout title={service.desc} desc={service.checkout_desc} img={service.img} category={category} />
         </>
     );
 };

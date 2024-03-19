@@ -1,18 +1,16 @@
+import React, { useState } from "react";
 import { Dropdown } from "../../components/dropdown/Dropdown";
 import styles from "./checkoutForm.module.css";
 import { Cities } from "../../Data/CityData";
 import { useParams } from "react-router-dom";
-import axios from "../../api/axios";
-import { useState } from "react";
-import {toast} from 'react-toastify';
-
-const CHECKOUT_FORM_URL = "http://localhost:5000/api/service/bookService";
+import { toast } from "react-toastify";
+import { getCookie, postData } from "../../QF/utils/utils";
+import { BOOKING_PAGE_PATH } from "../../QF/constants/constant";
 
 const CheckoutForm = () => {
-  const { category } = useParams();
-  const { service } = useParams();
+  const { proId, category } = useParams();
 
-  const [childData, setChildData] = useState(""); // childData is used to get data from dropdown
+  const [childData, setChildData] = useState("");
 
   const [values, setValues] = useState({
     fullName: "",
@@ -28,46 +26,36 @@ const CheckoutForm = () => {
   };
 
   const handleSubmit = async (e) => {
-    // console.log(values);
     e.preventDefault();
 
-    const userEmail = JSON.parse(localStorage.response).email;
-    // console.log(userEmail);
-
-    console.log();
+    // const userEmail = JSON.parse(localStorage.response).email;
 
     try {
-      const response = await axios.post(
-        CHECKOUT_FORM_URL,
-        JSON.stringify({
-          fullName: values.fullName,
-          email: userEmail,
-          serviceName: category,
-          serviceDate: values.serviceDate,
-          address: values.address,
-          city: childData,
-          note: values.note,
-          phoneNumber: values.phoneNumber,
-          serviceDesc: service,
-        }),{
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        }
-      );
+      const data = {
+        serviceName: category,
+        phoneNumber: values.phoneNumber,
+        serviceDate: values.serviceDate,
+        note: values.note,
+        fullName: values.fullName,
+        address: values.address,
+        associatedCustomer: getCookie("userId"),
+        associatedServiceman: proId,
+        email: "userEmail",
+        city: childData,
+        offerPrice: 500,
+      };
 
+      const response = await postData(BOOKING_PAGE_PATH, data);
+      console.log(response);
       toast.success("Service Booked Successfully");
     } catch (err) {
-      if (!err?.response) {
-        console.log("No Server Response");
-      } else if (err.response?.status === 400) {
-        alert("Professionals not available for selected location");
+      if (err.response?.status === 400) {
+        toast.error("Professionals not available for selected location");
       } else if (err.response?.status === 401) {
-        console.log("Unauthorized");
+        toast.error("Unauthorized access");
       } else {
-        console.log("something else is wrong ");
-        console.log(err.response.data);
+        console.error("Error occurred:", err);
+        toast.error("An error occurred. Please try again later.");
       }
     }
   };
@@ -85,7 +73,7 @@ const CheckoutForm = () => {
                   <input
                     type="text"
                     name="fullName"
-                    placeholder="john Dear"
+                    placeholder="John Dear"
                     onChange={onChange}
                     required
                   />
@@ -93,14 +81,13 @@ const CheckoutForm = () => {
                 <div className={styles["input-box"]}>
                   <span className={styles.details}>Phone Number</span>
                   <input
-                    type="number"
+                    type="tel"
                     name="phoneNumber"
                     placeholder="Enter your phone number"
                     onChange={onChange}
                     required
                   />
                 </div>
-                
                 <div className={styles["input-box"]}>
                   <span className={styles.details}>Service Date</span>
                   <input
@@ -125,7 +112,6 @@ const CheckoutForm = () => {
                   <Dropdown
                     name="city"
                     selectedCity={(childData) => setChildData(childData)}
-                    // onChange={onChange}
                     placeholder="Enter the City"
                     data={Cities}
                     required
@@ -142,7 +128,9 @@ const CheckoutForm = () => {
                   />
                 </div>
               </div>
-              <button className="button">Book Service</button>
+              <button type="submit" className="button">
+                Book Service
+              </button>
             </form>
           </div>
         </div>
@@ -150,4 +138,5 @@ const CheckoutForm = () => {
     </>
   );
 };
+
 export default CheckoutForm;
