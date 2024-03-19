@@ -1,0 +1,79 @@
+/* otp-page.css */
+
+/* Container */
+.otp-container {
+    width: 90%;
+    max-width: 400px;
+    margin: auto;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Icon */
+.icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #10B981;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-bottom: 1.5rem;
+}
+
+.icon-container svg {
+    fill: #fff;
+    width: 40px;
+    height: 40px;
+}
+
+/* Heading */
+.heading {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #333;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+/* OTP Input */
+.otp-input {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+/* Button */
+.action-btn {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #10B981;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.action-btn:hover {
+    background-color: #059669;
+}
+
+/* Spinner */
+.spinner {
+    margin-top: 0.25rem;
+}
+
+/* Error Message */
+.error-msg {
+    color: #ff0000;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+}
