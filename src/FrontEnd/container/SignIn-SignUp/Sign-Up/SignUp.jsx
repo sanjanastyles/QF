@@ -111,7 +111,7 @@ export const SignUp = () => {
           phone: values.phone,
           address: values.address,
           selectedServices: values.selectedServices,
-          isProfessional:isProfessional
+          isProfessional:"P"
         }
         : {
           name: values.fullName,
@@ -119,7 +119,7 @@ export const SignUp = () => {
           password: values.password,
           phone: values.phone,
           address:values.address,
-          isProfessional:isProfessional
+          isProfessional:"C"
         };
       navigate("/SignUp/otp", { state: { userData } });
     } catch (err) {

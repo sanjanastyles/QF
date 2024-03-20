@@ -41,13 +41,12 @@ export const SignIn = () => {
 
     try {
       const response = postData(LOGIN_PATH, { email: values.email, password: values.password }).then(e => {
-        console.log(e);
         if (e.code === 200) {
           setCookie('userId', e.data._id)
           localStorage.setItem("response", JSON.stringify(e?.data));
+          window.location.reload();
         }
       }).catch(e => { throw new Error("SOMETHING WRONG"); })
-      // window.location.reload();
       navigate("/");
       toast.success("Login Successfull");
     }

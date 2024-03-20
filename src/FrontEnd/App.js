@@ -69,12 +69,12 @@ function App() {
         <Route path="/Contact-Us" element={<ContactUs />} />
         <Route path="/checkout/:proId/:category" element={<CheckoutForm />} />
         <Route path="/Orders" element={<ClientOrders />} />
+        <Route path="/online/professionals" element={<ProfessionalList />} />
 
 
         {/* Professionals */}
         <Route path="/professionals/dashboard/:id/:serviceId" element={<ProfilePage />} />
         <Route path="/professional/:professionalId" element={<Professional />} />
-        <Route path="/online/professionals" element={<ProfessionalList />} />
 
         {/* AdminFlow */}
         <Route path="/admins" element={<AdminList />} />
