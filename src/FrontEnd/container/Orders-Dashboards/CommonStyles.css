@@ -1,0 +1,107 @@
+.wrapper {
+  margin: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 34px;
+  justify-content: center;
+}
+
+.section {
+  width: 100%;
+}
+
+.sectionTitle {
+  margin-bottom: 4rem;
+  font-size: 4.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, .5);
+  padding: .4em;
+  font-weight: 600;
+}
+
+.card-container {
+  padding: 2em;
+
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 100%;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.cardImg {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+}
+
+.cardTitle {
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+}
+
+.cardDescription {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.cardPrice {
+  font-size: 1.125rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.status {
+  font-size: 0.875rem;
+  margin-bottom: 10px;
+}
+
+.button {
+  cursor: pointer;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.pending {
+  background-color: #ffc107;
+  color: #fff;
+}
+
+.accept {
+  background-color: #28a745;
+  color: #fff;
+  margin-right: 5px;
+}
+
+.reject {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.completed {
+  background-color: #6c757d;
+  color: #fff;
+}
+
+.approved {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.approved:hover {
+  background-color: #0056b3;
+}

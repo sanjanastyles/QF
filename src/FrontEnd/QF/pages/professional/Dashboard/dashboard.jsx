@@ -57,7 +57,7 @@ const ProfilePage = () => {
                                             View Jobs
                                         </button>
                                         <div className="serviceHead_container_button">
-                                            <Link to={`/checkout/${getCookie('userId')}/${serviceId}`}>
+                                            <Link to={`/checkout/${id}/${serviceId}`}>
                                                 <button className="button">Book Service</button>
                                             </Link>
                                         </div>

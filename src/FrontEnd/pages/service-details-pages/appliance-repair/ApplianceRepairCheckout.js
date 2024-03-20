@@ -14,8 +14,9 @@ const ServiceManListHeading = () => {
     );
 };
 
-const ServiceManCard = ({ name, specialization, email, jobs, id , category}) => {
-    return (
+const ServiceManCard = ({ name, email, jobs, id , category}) => {
+return (
+
         <Card
             sx={{
                 backgroundColor: '#fff',

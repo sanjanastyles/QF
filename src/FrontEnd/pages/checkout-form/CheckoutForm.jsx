@@ -29,7 +29,7 @@ const CheckoutForm = () => {
     e.preventDefault();
 
     // const userEmail = JSON.parse(localStorage.response).email;
-
+    console.log(category, proId);
     try {
       const data = {
         serviceName: category,

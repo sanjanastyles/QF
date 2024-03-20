@@ -5,6 +5,7 @@ import logo from "../../assets/icons/logo2.png";
 import navbarStyles from "./navbar.module.css";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { deleteAllCookies, getCookie } from "../../QF/utils/utils";
 
 export const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
@@ -22,6 +23,8 @@ export const Navbar = () => {
   const handleLogout = () => {
     localStorage.removeItem("response");
     navigate("/");
+    deleteAllCookies()
+  
     window.location.reload();
     toast.success("Logged out Successfully");
   };
@@ -39,6 +42,8 @@ export const Navbar = () => {
           <p><Link to="/">Home</Link></p>
           <p><Link to="/Categories">Categories</Link></p>
           {userData.isServiceman === "C" && <p><Link to="/RegisterAsProfessional">Register As Professional</Link></p>}
+          {getCookie('userId') && <p><Link to="/orders">Your orders</Link></p>}
+
           <p>
             {userData.role === "A" ? (
               <Link to="/admin-dashboard">Admin Dashboard</Link>

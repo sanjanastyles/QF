@@ -1,12 +1,12 @@
 import React from "react";
-import ClientOrderStyles from "./CommonStyles.module.css";
+import  "./CommonStyles.css";
 
 export const ProfessionalOrders = () => {
   return (
-    <div className={ClientOrderStyles.container}>
-      <div className={ClientOrderStyles.box}>
+    <div className="container">
+      <div className="box">
         <h4>Orders</h4>
-        <div className={ClientOrderStyles.orderDetails}>
+        <div className="orderDetails">
           <h5>Client Name: Jessica Trump</h5>
           <h5>Phone No.: 8659745321</h5>
           <h5>Service Price: $100</h5>
