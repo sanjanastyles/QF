@@ -4,9 +4,9 @@ import { DeleteOutline } from "@mui/icons-material";
 // import { userRows } from "../../../../Data/dummyData";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import axios from "../../../../api/axios";
-
 import Sidebar from "../../../../components/admin-dashboard/sidebar/Sidebar";
+import { getData } from "../../../../QF/utils/utils";
+import { GET_ALL_USER_PATH } from "../../../../QF/constants/constant";
 
 export default function UserList() {
   const [data, setData] = useState([]);
@@ -14,12 +14,7 @@ export default function UserList() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("/admin/getUsers", {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        });
-
-        setData(response.data.users);
+        getData(GET_ALL_USER_PATH).then(e => e.code === 200 ? setData(e.data): setData([]));
       } catch (err) {
         console.log(err.message);
       }
@@ -32,7 +27,9 @@ export default function UserList() {
   };
 
   const columns = [
-    { field: "id", headerName: "ID", width: 90 },
+    { field: "id", headerName: "ID", width: 280 },
+    { field: "professional", headerName: "Professional", width: 150 },
+
     {
       field: "user",
       headerName: "User",
@@ -70,9 +67,10 @@ export default function UserList() {
 
   const rows = data.map((row) => ({
     id: row._id,
-    username: row.fullName,
+    username: row.name,
     email: row.email,
-    phoneNo: row.phoneNo,
+    professional: row.isServiceman,
+    phoneNo: row.phoneNumber,
     action: (
       <>
         <Link to={"/professional/" + row._id}>

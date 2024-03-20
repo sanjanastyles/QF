@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { Feature } from '../container/features/Feature';
 import { Header } from '../container/header/Header';

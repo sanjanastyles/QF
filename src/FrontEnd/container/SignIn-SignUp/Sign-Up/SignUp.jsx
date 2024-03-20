@@ -17,8 +17,8 @@ import Switch from "@mui/material/Switch";
 
 const services = [
   { value: "", keyword: "SS", label: "Select a Service" },
-  { value: "Electricity", keyword: "EL", label: "Electricity" },
-  { value: "Plumber", keyword: "PL", label: "Plumber" }
+  { value: "electrician", keyword: "EL", label: "electrician" },
+  { value: "plumbing", keyword: "PL", label: "plumbing" }
 ];
 
 export const SignUp = () => {
@@ -88,7 +88,16 @@ export const SignUp = () => {
       label: "Confirm Password",
       pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
       required: true
-    }
+    },
+    {
+      id: 6,
+      name: "address",
+      type: "address",
+      placeholder: "Address",
+      errorMessage: "It should be a valid  address!",
+      label: "Address",
+      required: true
+    },
   ]);
 
   const handleSubmit = async (e) => {
@@ -109,6 +118,7 @@ export const SignUp = () => {
           email: values.email,
           password: values.password,
           phone: values.phone,
+          address:values.address,
           isProfessional:isProfessional
         };
       navigate("/SignUp/otp", { state: { userData } });

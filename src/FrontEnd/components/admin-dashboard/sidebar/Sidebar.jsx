@@ -52,12 +52,12 @@ export default function Sidebar() {
                 Services
               </li>
             </Link>
-            <Link to="/professionals" className="link">
+            {/* <Link to="/professionals" className="link">
               <li className="sidebarListItem">
                 <WorkOutline className="sidebarIcon" />
                 Professionals
               </li>
-            </Link>
+            </Link> */}
             <Link to="/admins" className="link">
               <li className="sidebarListItem">
                 <PermIdentity className="sidebarIcon" />

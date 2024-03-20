@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { Dropdown } from "../../components/dropdown/Dropdown";
 import styles from "./checkoutForm.module.css";
 import { Cities } from "../../Data/CityData";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { getCookie, postData } from "../../QF/utils/utils";
 import { BOOKING_PAGE_PATH } from "../../QF/constants/constant";
 
 const CheckoutForm = () => {
   const { proId, category } = useParams();
-
+  const nav = useNavigate()
   const [childData, setChildData] = useState("");
 
   const [values, setValues] = useState({
@@ -45,9 +45,11 @@ const CheckoutForm = () => {
         offerPrice: 500,
       };
 
-      const response = await postData(BOOKING_PAGE_PATH, data);
-      console.log(response);
-      toast.success("Service Booked Successfully");
+      const response = await postData(BOOKING_PAGE_PATH, data).then(e => {
+        nav('/');
+        e.code < 300 ?
+          toast.success("Service Booked Successfully") : toast.error("Service Not Booked Successfully");
+      });
     } catch (err) {
       if (err.response?.status === 400) {
         toast.error("Professionals not available for selected location");

@@ -1,9 +1,10 @@
+import { CREATE_ADMIN_PATH } from "../../../../QF/constants/constant";
+import { postData } from "../../../../QF/utils/utils";
 import Sidebar from "../../../../components/admin-dashboard/sidebar/Sidebar";
 import "./newAdmin.css";
-import axios from "../../../../api/axios";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
-const NEW_ADMIN_URL = "/admin/createAdmin";
 
 export default function NewAdmin() {
   const [values, setValues] = useState({
@@ -12,7 +13,6 @@ export default function NewAdmin() {
     email: "",
     phone: "",
     password: "",
-    // position: "",
   });
 
   const onChange = (e) => {
@@ -20,41 +20,30 @@ export default function NewAdmin() {
   };
 
   const handleSubmit = async (e) => {
-    console.log(values);
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        NEW_ADMIN_URL,
-        JSON.stringify({
-          username: values.username,
-          fullName: values.fullName,
-          email: values.email,
-          phone: values.phone,
-          password: values.password,
-          // position: values.position,
-        }),
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        }
-      );
+      postData(CREATE_ADMIN_PATH, {
+        username: values.username,
+        fullName: values.fullName,
+        email: values.email,
+        phone: values.phone,
+        password: values.password,
+      })
 
-      console.log(JSON.stringify(response));
-      console.log(response);
 
-      alert("New Admin Created!");
+      toast.success("New Admin Created!");
     } catch (err) {
       if (!err?.response) {
-        alert("No Server Response");
+        toast.error("No Server Response");
       } else if (err.response?.status === 400) {
-        alert("Missing Values");
+        toast.error("Missing Values");
       } else if (err.response?.status === 409) {
-        alert("Username, Phone or Email already exists!");
+        toast.error("Username, Phone or Email already exists!");
       } else if (err.response?.status === 403) {
-        alert("You are Unauthorized");
+        toast.error("You are Unauthorized");
       } else {
-        alert("Fail to Create Admin");
+        toast.error("Fail to Create Admin");
       }
     }
   };
@@ -116,15 +105,6 @@ export default function NewAdmin() {
             />
           </div>
 
-          {/* <div className="newAdminItem">
-          <label>Position</label>
-            <input
-              type="text"
-              name="position"
-              placeholder="manager"
-              onChange={onChange}
-            />
-          </div> */}
           <button className="newAdminButton">Create</button>
         </form>
       </div>

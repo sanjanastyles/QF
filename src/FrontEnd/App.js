@@ -70,12 +70,6 @@ function App() {
         <Route path="/checkout/:proId/:category" element={<CheckoutForm />} />
         <Route path="/Orders" element={<ClientOrders />} />
 
-        <Route path="/users" element={<UserList />} />
-        <Route path="/user/:userId" element={<User />} />
-        <Route path="/services" element={<ServiceList />} />
-        <Route path="/service/:ServiceId" element={<Service />} />
-        <Route path="/newService" element={<NewService />} />
-
 
         {/* Professionals */}
         <Route path="/professionals/dashboard/:id/:serviceId" element={<ProfilePage />} />
@@ -84,10 +78,17 @@ function App() {
 
         {/* AdminFlow */}
         <Route path="/admins" element={<AdminList />} />
-        <Route path="/admin/:adminId" element={<Admin />} />
         <Route path="/newAdmin" element={<NewAdmin />} />
-        <Route path="/createProfessional" element={<NewProfessional />} />
         <Route path="/admin-dashboard" element={<AdminHome />} />
+        <Route path="/users" element={<UserList />} />
+        <Route path="/services" element={<ServiceList />} />
+        <Route path="/newService" element={<NewService />} />
+
+        <Route path="/admin/:adminId" element={<Admin />} />
+        <Route path="/service/:ServiceId" element={<Service />} />
+        <Route path="/user/:userId" element={<User />} />
+        
+
 
 
         {/* Link in pages/services/ServicesCategories*/}

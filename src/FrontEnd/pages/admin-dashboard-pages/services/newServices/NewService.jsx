@@ -1,15 +1,15 @@
+import { toast } from "react-toastify";
+import { CREATE_SERVICE_PATH } from "../../../../QF/constants/constant";
+import { postData } from "../../../../QF/utils/utils";
 import Sidebar from "../../../../components/admin-dashboard/sidebar/Sidebar";
 import "./newService.css";
-import axios from "../../../../api/axios";
 import { useState } from "react";
 
 export default function NewService() {
-  const SERVICE_URL = "/admin/createService";
 
   const [values, setValues] = useState({
     name: "",
-    active: "true",
-    price: "",
+    keyWord: "",
   });
 
   const onChange = (e) => {
@@ -17,36 +17,22 @@ export default function NewService() {
   };
 
   const handleSubmit = async (e) => {
-    console.log(values);
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        SERVICE_URL,
-        JSON.stringify({
-          name: values.name,
-          active: "true",
-          price: "100",
-        }),
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        }
-      );
-
-      console.log(JSON.stringify(response));
-      console.log(response);
-
-      alert(`${values.name} has been added to the database`);
+      postData(CREATE_SERVICE_PATH,{
+        name: values.name,
+        keyWord: values.keyWord,
+      })
+      toast.success(`${values.name} has been added to the database`);
     } catch (err) {
       if (!err?.response) {
-        console.log("No Server Response");
       } else if (err.response?.status === 400) {
-        alert("Service already exists");
+        toast.error("Service already exists");
       } else if (err.response?.status === 403) {
-        alert("You are Unauthorized to perform this action");
+        toast.error("You are Unauthorized to perform this action");
       } else {
-        alert("Unable to Create Service");
+        toast.error("Unable to Create Service");
       }
     }
   };
@@ -68,19 +54,12 @@ export default function NewService() {
             />
           </div>
           <div className="addServiceItem">
-            <label>Active</label>
-            <select onChange={onChange} name="active" id="active">
-              <option value="true">Yes</option>
-              <option value="false">No</option>
-            </select>
-          </div>
-          <div className="addServiceItem">
-            <label>Price</label>
+            <label>Key Word</label>
             <input
-              name="price"
+              name="keyWord"
               onChange={onChange}
-              type="number"
-              placeholder="Enter Price"
+              type="text"
+              placeholder="Enter keyWord"
               required
             />
           </div>

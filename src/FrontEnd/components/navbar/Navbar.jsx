@@ -53,11 +53,11 @@ export const Navbar = () => {
           <p>
             <Link to="/RegisterAsProfessional">Register As Professional</Link>
           </p>
-          <p className={data.role ? null : navbarStyles.hiddenLink}>
+          <p className={data.name ? null : navbarStyles.hiddenLink}>
             {data && (
-              <Link to="/dashboard" className={data.role ? null : navbarStyles.hiddenLink}>
+              <Link to="/dashboard" className={data.name ? null : navbarStyles.hiddenLink}>
                 {(() => {
-                  switch (data.role) {
+                  switch (data.name) {
                     case "admin":
                       return "Admin Dashboard";
                     case "professional":
@@ -80,10 +80,10 @@ export const Navbar = () => {
 
       <div className={navbarStyles.navbar_sign}>
         <p className={navbarStyles.signIn}>
-          {data.role ? data.fullName : <Link to="/SignIn">Sign in</Link>}
+          {data.name ? data.name : <Link to="/SignIn">Sign in</Link>}
         </p>
         <p className={navbarStyles.logout}>
-          {data.role ? (
+          {data.name ? (
             <p onClick={handleLogout}>Logout</p>
           ) : (
             <Link to="/SignUp">
@@ -124,9 +124,9 @@ export const Navbar = () => {
                   </Link>
                 </p>
                 <p onClick={() => setToggleMenu(false)}>
-                  {data.role === "admin" ? (
+                  {data.isServiceman === "admin" ? (
                     <Link to="/admin-dashboard">Admin Dashboard</Link>
-                  ) : data.role === "professional" ? (
+                  ) : data.isServiceman === "professional" ? (
                     <Link to="/under-construction">Professional Dashboard</Link>
                   ) : (
                     <Link to="/under-construction">User Dashboard</Link>
@@ -141,7 +141,7 @@ export const Navbar = () => {
                   onClick={() => setToggleMenu(false)}
                   className={navbarStyles.signIn}
                 >
-                  {data.role ? (
+                  {data.isServiceman ? (
                     <>{data.name}</>
                   ) : (
                     <Link to="/SignIn">Sign in</Link>
@@ -151,7 +151,7 @@ export const Navbar = () => {
                   onClick={() => setToggleMenu(false)}
                   className={navbarStyles.logout}
                 >
-                  {data.role ? (
+                  {data.name ? (
                     <p onClick={handleLogout}>Logout</p>
                   ) : (
                     <Link to="/SignUp">
