@@ -8,7 +8,11 @@ const ADMIN_BASE_PATH = `${BASE_PATH}/admin`
 export const SIGNUP_PATH = `${SERVICEMAN_BASE_PATH}/signup`
 export const LOGIN_PATH = `${SERVICEMAN_BASE_PATH}/login`
 export const CONFIRM_BOOKING_PATH = `${SERVICEMAN_BASE_PATH}/confirm/booking/`
+export const CANCEL_BOOKING_PATH = `${SERVICEMAN_BASE_PATH}/cancel/booking`
 
+
+
+export const DELETE_BOOKING_PATH = `${COMMON_BASE_PATH}/delete/booking`
 export const CONTACT_FORM_PATH = `${COMMON_BASE_PATH}/contact`
 export const ALL_SERVICE_PATH = `${COMMON_BASE_PATH}/service`
 export const PRO_PAGE_PATH = `${COMMON_BASE_PATH}/profile`
