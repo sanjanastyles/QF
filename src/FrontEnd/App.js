@@ -40,6 +40,7 @@ import Success from './pages/Success/Success';
 import UserDashboard from './pages/user-dashboard/userDashboard';
 import OTPpage from './QF/pages/otp/otppage';
 import ProfilePage from './QF/pages/professional/Dashboard/dashboard';
+import ChatPage from './QF/pages/chat/chatpage';
 
 
 
@@ -72,6 +73,10 @@ function App() {
         <Route path="/online/professionals" element={<ProfessionalList />} />
 
 
+        {/*  Chat page */}
+
+        <Route path="/chat/:bookingId" element={<ChatPage />} />
+
         {/* Professionals */}
         <Route path="/professionals/dashboard/:id/:serviceId" element={<ProfilePage />} />
         <Route path="/professional/:professionalId" element={<Professional />} />
@@ -87,7 +92,7 @@ function App() {
         <Route path="/admin/:adminId" element={<Admin />} />
         <Route path="/service/:ServiceId" element={<Service />} />
         <Route path="/user/:userId" element={<User />} />
-        
+
 
 
 
