@@ -2,14 +2,17 @@ import { dateFormatterWithDayName } from "../../utils/utils";
 
 export default function bookingDataMapper(arr) {
     let res = {}
-    Object.values(arr).forEach(({ _id, address, contactNumber, customerName, dateOfAppointment, dateOfBooking, description, professional, isCanceled, isPending, isAccepted, isActive, serviceName }, index) => {
+    Object.values(arr).forEach(({ _id, address, contactNumber, associatedCustomer, customerName, dateOfAppointment, dateOfBooking, description, professional, isCanceled, isPending, isAccepted, isActive, serviceName, associatedServiceman,
+    }, index) => {
         res[index] = {
             bookingId: _id,
             address,
+            associatedCustomer,
+            associatedServiceman,
             contactNumber,
             customerName,
-            dateOfAppointment:dateFormatterWithDayName(dateOfAppointment),
-            dateOfBooking:dateFormatterWithDayName(dateOfBooking),
+            dateOfAppointment: dateFormatterWithDayName(dateOfAppointment),
+            dateOfBooking: dateFormatterWithDayName(dateOfBooking),
             description,
             professional,
             serviceName,

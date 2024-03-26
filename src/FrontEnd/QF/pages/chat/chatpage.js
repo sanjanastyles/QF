@@ -10,12 +10,12 @@ import './chat.css';
 const ChatPage = () => {
     const [userData, _] = useState(localStorage.getItem("response"));
     const param = useParams();
-    const { socket, setSocketUserId,onlineUsers } = useSocket();
+    const { socket, setSocketUserId, onlineUsers } = useSocket();
     // const { socket,  } = useSocket(param.bookingId);
 
     useEffect(() => {
-        setSocketUserId(param.bookingId); // Set user ID when component mounts
-    }, [setSocketUserId, param.bookingId]);
+        setSocketUserId(getCookie('userId')); // Set user ID when component mounts
+    }, [setSocketUserId, param.s, param.c]);
 
     const [message, setMessage] = useState('');
     const inputMsg = useRef();
@@ -34,15 +34,19 @@ const ChatPage = () => {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        bookingId: param.bookingId,
+                        // bookingId: getCookie("userId"),
+                        participant: {
+                            c: param.c,
+                            s: param.s
+                        },
                     }),
                 });
                 const data = await res.json();
-                console.log(data);
                 const messages = data
                     ? data[0].messages?.map((el) => ({
                         id: el._id,
                         sender: el.sender,
+
                         senderName: el.senderName,
                         message: el.text,
                     }))
@@ -57,14 +61,13 @@ const ChatPage = () => {
 
     useEffect(() => {
         if (!socket) {
-            console.log("Socket is not connected.");
             return;
         }
 
-        console.log("Socket is connected:", socket.id);
 
+        // socket.join(getCookie("userId"))
         socket.on('newMessage', (message) => {
-            console.log('New message received:', message);
+            console.log("MESS", message);
             if (!document.hasFocus()) {
                 const sound = new Audio(messageSound);
                 sound.play();
@@ -97,6 +100,10 @@ const ChatPage = () => {
                 body: JSON.stringify({
                     message: message,
                     senderId: getCookie('userId'),
+                    participant: {
+                        c: param.c,
+                        s: param.s
+                    },
                     bookingId: param.bookingId,
                     // recipientId: onlineUsers.find((user) => user !== getCookie('userId')),
                     senderName: userData.name,

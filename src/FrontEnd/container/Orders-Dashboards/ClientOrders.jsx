@@ -150,7 +150,7 @@ function Section({ title, data, confirm, deleteBooking, cancel }) {
   );
 }
 
-function CustomCard({ bookingId, serviceName, description, customerName,contactNumber,status, dateOfAppointment, dateOfBooking, professional, confirm, cancel, deleteBooking }) {
+function CustomCard({ bookingId, serviceName, description, customerName,contactNumber,status, dateOfAppointment, dateOfBooking, professional, confirm, cancel, deleteBooking,associatedCustomer, associatedServiceman }) {
 
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -191,16 +191,16 @@ function CustomCard({ bookingId, serviceName, description, customerName,contactN
         <Typography variant="h6" className="cardPrice">
           ₹{100}
         </Typography>
-        {RenderButton(status, confirm, bookingId, deleteBooking, cancel, professional._id)}
+        {RenderButton(status, confirm, bookingId, deleteBooking, cancel, associatedServiceman, associatedCustomer)}
       </Box>
     </Card>
   );
 }
 
-function RenderButton(status, confirm, id, deleteBooking, cancel, pId) {
+function RenderButton(status, confirm, id, deleteBooking, cancel, pId, associatedCustomer) {
   const navigate = useNavigate()
   const handleChat = async () => {
-    navigate(`/chat/${id}`)
+    navigate(`/chat/${pId}/${associatedCustomer}`)
   };
   if (status === "Pending") {
     return (
