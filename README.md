@@ -1,70 +1,246 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Todo
+ - Clean the Code
+ - Encrypt Stuff(password and stuff) 
+ - secure endpoints
+ - Css changes
 
-## Available Scripts
 
-In the project directory, you can run:
+## Front End
 
-### `npm start`
+### Structure
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Entry File**: `app.js`
+- **How to Start**:
+  - Install dependencies: `npm i`
+  - Start the application: `npm run start`
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+### Routes
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### Common Routes
 
-### `npm run build`
+- **Home**: `/`
+- **Sign In**: `/SignIn`
+- **Sign Up**: `/SignUp`
+- **OTP Page**: `/SignUp/otp`
+- **Categories**: `/Categories`
+- **Contact Us**: `/Contact-Us`
+- **Checkout Form**: `/checkout/:proId/:category`
+- **Client Orders**: `/Orders`
+- **Online Professionals**: `/online/professionals`
+- **Chat Page**: `/chat/:s/:c/:b`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### Professional Routes
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Professional Dashboard**: `/professionals/dashboard/:id/:serviceId`
+- **Professional Profile**: `/professional/:professionalId`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### Admin Routes
 
-### `npm run eject`
+- **Admin List**: `/admins`
+- **New Admin**: `/newAdmin`
+- **Admin Dashboard**: `/admin-dashboard`
+- **User List**: `/users`
+- **Service List**: `/services`
+- **New Service**: `/newService`
+- **Admin Details**: `/admin/:adminId`
+- **Service Details**: `/service/:ServiceId`
+- **User Details**: `/user/:userId`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+#### Services Routes
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- **All Services**: `/Categories/:category`
+- **Service Page**: `/categories/:category/:subCategory`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+#### Other Routes
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- **User Dashboard**: `/dashboard`
+- **Register as Professional**: `/RegisterAsProfessional`
+- **Under Construction Page**: `/under-construction`
+- **Success Page**: `/success.html`
+- **Error Page**: `*`
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Structure
 
-### Code Splitting
+- **Entry File**: `app.js`
+- **How to Start**:
+  - Install dependencies: `npm i`
+  - Start the application: `npm run start`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Routes
 
-### Analyzing the Bundle Size
+1. **Admin**
+2. **Profesional**
+3. **Customer**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Backend End
 
-### Making a Progressive Web App
+### Structure
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- **Entry File**: `app.ts`
+- **How to Start**:
+  - Install dependencies: `npm i`
+  - Start the development server: `npm run dev`
+  - Start the production server: `npm run start`
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Routes
 
-### Deployment
+#### Admin Controller
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- **GET /admin/users**
+  - Description: Retrieves all users.
+  - Controller Method: `adminController.handleAllUsers`
 
-### `npm run build` fails to minify
+- **GET /admin/get/admin**
+  - Description: Retrieves all admin users.
+  - Controller Method: `adminController.handleAllAdmin`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **POST /admin/create/service**
+  - Description: Creates a new service.
+  - Controller Method: `adminController.handleAddService`
+
+- **POST /admin/create/admin**
+  - Description: Creates a new admin user.
+  - Controller Method: `adminController.handleCreateAdmin`
+
+- **POST /admin/block**
+  - Description: Blocks a user.
+  - Controller Method: `adminController.handleBlock`
+
+<!-- - **GET /admin/abc**
+  - Description: Endpoint description.
+  - Controller Method: Endpoint Handler
+
+- **POST /admin/xyz**
+  - Description: Endpoint description.
+  - Controller Method: Endpoint Handler -->
+
+  #### ServiceMan Controller
+
+- **POST /serviceman/login**
+  - Description: Handles login for service providers.
+  - Controller Method: `serviceManController.handleLogin`
+
+- **POST /serviceman/signup**
+  - Description: Handles signup for service providers.
+  - Controller Method: `serviceManController.handleSignup`
+
+- **GET /serviceman/profile**
+  - Description: Retrieves service provider profile.
+  - Middleware: `auth`
+  - Controller Method: `serviceManController.handleProfile`
+
+- **POST /serviceman/profile**
+  - Description: Updates service provider profile.
+  - Middleware: `auth`
+  - Controller Method: `serviceManController.handleProfilePost`
+
+- **GET /serviceman/see/reviews**
+  - Description: Retrieves reviews for the service provider.
+  - Controller Method: `serviceManController.handleSeeReviews`
+
+- **GET /serviceman/service**
+  - Description: Retrieves services provided by the service provider.
+  - Controller Method: `serviceManController.handleServiceManService`
+
+- **GET /serviceman/cancel/booking**
+  - Description: Cancels a booking made by the service provider.
+  - Controller Method: `serviceManController.handleCancelBooking`
+
+- **GET /serviceman/confirm/booking**
+  - Description: Confirms a booking made by the service provider.
+  - Controller Method: `serviceManController.handleConfirmBooking`
+
+
+#### Customer Controller
+
+- **POST /customer/review**
+  - Description: Handles posting reviews by customers.
+  - Controller Method: `customerController.handleReviewPost`
+
+- **GET /customer/online/serviceman**
+  - Description: Retrieves all online service providers.
+  - Controller Method: `customerController.getAllOnlineServiceMan`
+
+#### Common Controller
+
+- **POST /common/contact**
+  - Description: Handles submission of contact form.
+  - Controller Method: `commonController.handleContactForm`
+
+- **POST /common/booking**
+  - Description: Handles booking requests.
+  - Controller Method: `commonController.handleBooking`
+
+- **GET /common/allservice**
+  - Description: Retrieves all available services.
+  - Controller Method: `commonController.handleAllService`
+
+- **GET /common/service/:serviceName**
+  - Description: Retrieves details of a specific service.
+  - Controller Method: `commonController.handleService`
+
+- **GET /common/profile**
+  - Description: Retrieves user profile information.
+  - Controller Method: `commonController.handleProfile`
+
+- **GET /common/history**
+  - Description: Retrieves user booking history.
+  - Controller Method: `commonController.handleHistory`
+
+- **GET /common/users/profile**
+  - Description: Retrieves user profile information.
+  - Controller Method: `commonController.getUserProfile`
+
+- **GET /common/delete/booking**
+  - Description: Deletes a booking.
+  - Controller Method: `commonController.deleteBooking`
+
+- **GET /common/online**
+  - Description: Handles user going online.
+  - Controller Method: `commonController.handleOnline`
+
+- **GET /common/offline**
+  - Description: Handles user going offline.
+  - Controller Method: `commonController.handleOffline`
+
+- **GET /common/logout**
+  - Description: Handles user logout.
+  - Controller Method: `commonController.handleLogOut`
+
+- **POST /common/forgotpassword**
+  - Description: Handles forgot password requests.
+  - Controller Method: `commonController.handleForgotPassword`
+
+- **POST /common/get/conversation**
+  - Description: Retrieves conversations.
+  - Controller Method: `messageController.getConversations`
+
+- **POST /common/post/message**
+  - Description: Sends a message.
+  - Controller Method: `messageController.sendMessage`
+
+
+## Getting Started
+
+To get started with this project, follow these steps:
+
+1. **Front End**:
+   - Navigate to the front end directory.
+   - Run `npm i` to install dependencies.
+   - Start the application using `npm run start`.
+
+2. **Back End**:
+   - Navigate to the back end directory.
+   - Run `npm i` to install dependencies.
+   - For development, start the server using `npm run dev`.
+   - For production, start the server using `npm run start`.
+
+## Notes
+
+- Make sure you have Node.js and npm installed on your system.
+- Ensure that both front end and back end servers are running simultaneously for full functionality.

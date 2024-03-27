@@ -75,7 +75,7 @@ function App() {
 
         {/*  Chat page */}
 
-        <Route path="/chat/:s/:c" element={<ChatPage />} />
+        <Route path="/chat/:s/:c/:b" element={<ChatPage />} />
 
         {/* Professionals */}
         <Route path="/professionals/dashboard/:id/:serviceId" element={<ProfilePage />} />

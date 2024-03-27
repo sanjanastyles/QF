@@ -200,7 +200,7 @@ function CustomCard({ bookingId, serviceName, description, customerName,contactN
 function RenderButton(status, confirm, id, deleteBooking, cancel, pId, associatedCustomer) {
   const navigate = useNavigate()
   const handleChat = async () => {
-    navigate(`/chat/${pId}/${associatedCustomer}`)
+    navigate(`/chat/${pId}/${associatedCustomer}/${id}`)
   };
   if (status === "Pending") {
     return (

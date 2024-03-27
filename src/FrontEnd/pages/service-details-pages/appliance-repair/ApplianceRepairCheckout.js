@@ -14,9 +14,8 @@ const ServiceManListHeading = () => {
     );
 };
 
-const ServiceManCard = ({ name, email, jobs, id , category}) => {
-return (
-
+const ServiceManCard = ({ name, email, jobs, id, category }) => {
+    return (
         <Card
             sx={{
                 backgroundColor: '#fff',
@@ -38,8 +37,6 @@ return (
                     <Typography variant="h5" component="h2" gutterBottom>
                         {email}
                     </Typography>
-                    {/* {specialization.map(({ name }) => <Typography color="textSecondary" component="h2">{name}</Typography>
-                )} */}
                     <Typography variant="h5" component="p" gutterBottom>
                         Number of Past Jobs - {jobs?.length}
                     </Typography>
@@ -53,12 +50,13 @@ const ApplianceRepairServiceCheckout = ({ service, category }) => {
     const [data, setData] = useState();
 
     useEffect(() => {
+        getData(`${ALL_SERVICE_PATH}/${category}`).then(response => {
+            setData(response.code === 200 ? response.data : []);
+        });
+    }, []);
 
-        getData(`${ALL_SERVICE_PATH}/${category}`).then(e => e.code === 200 ? setData(e.data) : setData([]))
+    if (!data) return <div>Loading...</div>;
 
-    }, [])
-
-    if (!data) return <div>loading...</div>
     return (
         <>
             <Box
@@ -73,11 +71,19 @@ const ApplianceRepairServiceCheckout = ({ service, category }) => {
                     }
                 }}
             >
-                <ServiceManListHeading />
+                {data.length > 0 && <ServiceManListHeading />}
                 <Grid container spacing={3}>
-                    {data.length > 0 && data.map(({ _id, name, jobs, email, jobId }, index) => <Grid item xs={12} sm={6} md={4} key={index}>
-                        <ServiceManCard name={name} specialization={jobs} email={email} jobs={jobId} id={_id} category={category}/>
-                    </Grid>)}
+                    {data.length > 0 ? (
+                        data.map(({ _id, name, jobs, email, jobId }, index) => (
+                            <Grid item xs={12} sm={6} md={4} key={index}>
+                                <ServiceManCard name={name} specialization={jobs} email={email} jobs={jobId} id={_id} category={category} />
+                            </Grid>
+                        ))
+                    ) : (
+                        <div>
+                            <h2>No service men for now, but please stay tuned.</h2>
+                        </div>
+                    )}
                 </Grid>
             </Box>
             <ServicesCheckout title={service.desc} desc={service.checkout_desc} img={service.img} category={category} />

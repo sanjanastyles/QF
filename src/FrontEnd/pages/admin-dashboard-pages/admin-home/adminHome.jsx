@@ -11,11 +11,6 @@ import { useEffect } from "react";
 export default function Home() {
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (localStorage.getItem("role") !== "user") {
-  //     navigate("/");
-  //   }
-  // }, []);
 
   return (
     <div className="sidebar-container">

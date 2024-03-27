@@ -66,7 +66,7 @@ const ChatPage = () => {
 
 
         // socket.join(getCookie("userId"))
-        socket.on('newMessage', (message) => {
+        socket.on(`${param.b}`, (message) => {
             console.log("MESS", message);
             if (!document.hasFocus()) {
                 const sound = new Audio(messageSound);
@@ -104,7 +104,7 @@ const ChatPage = () => {
                         c: param.c,
                         s: param.s
                     },
-                    bookingId: param.bookingId,
+                    bookingId: param.b,
                     // recipientId: onlineUsers.find((user) => user !== getCookie('userId')),
                     senderName: userData.name,
                 }),
