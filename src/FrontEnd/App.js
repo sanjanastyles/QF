@@ -41,6 +41,7 @@ import UserDashboard from './pages/user-dashboard/userDashboard';
 import OTPpage from './QF/pages/otp/otppage';
 import ProfilePage from './QF/pages/professional/Dashboard/dashboard';
 import ChatPage from './QF/pages/chat/chatpage';
+import MapPage from './QF/pages/map/map';
 
 
 
@@ -95,6 +96,8 @@ function App() {
 
 
 
+        <Route path="/map/:id" element={<MapPage />} />
+
 
         {/* Link in pages/services/ServicesCategories*/}
         <Route path="/Categories/:category" element={<AllServices />} />
@@ -106,14 +109,9 @@ function App() {
         {data && (
           <Route
             path="/dashboard"
-            element={
-              data.role === "admin" ? (
-                <AdminHome />
-              ) : data.role === "professional" ? (
-                <UnderConstruction />
-              ) : (
-                <UserDashboard />
-              )
+            element=
+            {
+              <UserDashboard />
             }
           />
         )}

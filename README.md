@@ -4,7 +4,9 @@
  - Encrypt Stuff(password and stuff) 
  - secure endpoints
  - Css changes
-
+ - Payment Integration
+ - Review stuff
+ - Map
 
 ## Front End
 

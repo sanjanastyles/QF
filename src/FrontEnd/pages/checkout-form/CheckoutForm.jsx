@@ -28,8 +28,6 @@ const CheckoutForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // const userEmail = JSON.parse(localStorage.response).email;
-    console.log(category, proId);
     try {
       const data = {
         serviceName: category,
@@ -43,6 +41,10 @@ const CheckoutForm = () => {
         email: "userEmail",
         city: childData,
         offerPrice: 500,
+// coods:[{
+//   lat:
+//   lon:
+// }]
       };
 
       const response = await postData(BOOKING_PAGE_PATH, data).then(e => {

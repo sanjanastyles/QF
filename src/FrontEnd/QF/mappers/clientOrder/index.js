@@ -1,6 +1,6 @@
 import { dateFormatterWithDayName } from "../../utils/utils";
 
-export default function bookingDataMapper(arr) {
+export function bookingDataMapper(arr) {
     let res = {}
     Object.values(arr).forEach(({ _id, address, contactNumber, associatedCustomer, customerName, dateOfAppointment, dateOfBooking, description, professional, isCanceled, isPending, isAccepted, isActive, serviceName, associatedServiceman,
     }, index) => {
@@ -24,9 +24,33 @@ export default function bookingDataMapper(arr) {
     return Object.values(res);
 
 }
+
+
+export function reviewDataMapper(arr) {
+    let res = {}
+console.log(Object.values(arr))
+    Object.values(arr).forEach(({ id,name, review, booking,
+    }, index) => {
+        res[index] = {
+            reviewId: id,
+            quality:review.quality,
+            recommend:review.recommend,
+            feedback:review.feedback,
+            serviceName:booking.serviceName,
+            name:name
+
+        }
+
+    });
+    return Object.values(res);
+
+}
+
+
 const getStatus = (isCanceled, isPending, isActive, isAccepted) => {
+    if (!isActive && !isCanceled && !isPending) return "Completed"
     if (isCanceled) return "Cancelled"
     if (isPending) return "Pending"
-    if (!isActive) return "Completed"
     if (isAccepted) return "Accepted"
+    return "Completed"
 }
