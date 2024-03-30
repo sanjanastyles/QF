@@ -24,7 +24,7 @@ export const Navbar = () => {
     localStorage.removeItem("response");
     navigate("/");
     deleteAllCookies()
-  
+
     window.location.reload();
     toast.success("Logged out Successfully");
   };
@@ -42,26 +42,29 @@ export const Navbar = () => {
           <p><Link to="/">Home</Link></p>
           <p><Link to="/Categories">Categories</Link></p>
           {userData.isServiceman === "C" && <p><Link to="/RegisterAsProfessional">Register As Professional</Link></p>}
-          {getCookie('userId') && <p><Link to="/orders">Your orders</Link></p>}
+          {getCookie('userId') && userData.type !== "admin" ? <p><Link to="/orders">Your orders</Link></p> : null}
 
           <p>
-            {userData.role === "A" ? (
+
+
+            {userData.type === "admin" ? (
               <Link to="/admin-dashboard">Admin Dashboard</Link>
-            ) : userData.isServiceman === "P" ? (
-              <Link to="/dashboard">Professional Dashboard</Link>
             ) : (
-              <Link to="/under-construction">User Dashboard</Link>)}
+              <Link to="/dashboard">Dashboard</Link>
+            )}
+
+
           </p>
-          <p><Link to="/ContactUs">Contact Us</Link></p>
+          {userData.type !== "admin" && <p><Link to="/ContactUs">Contact Us</Link></p>}
         </div>
       </div>
 
       <div className={navbarStyles.navbar_sign}>
         <p className={navbarStyles.signIn}>
-          {userData.name ? userData.name : <Link to="/SignIn">Sign in</Link>}
+          {userData.name || userData.fullName ? userData.name ?? userData.fullName : <Link to="/SignIn">Sign in</Link>}
         </p>
         <p className={navbarStyles.logout}>
-          {userData.name ? (
+          {userData.name || userData.fullName ? (
             <p onClick={handleLogout}>Logout</p>
           ) : (
             <Link to="/SignUp">Sign up</Link>

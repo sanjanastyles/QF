@@ -4,7 +4,7 @@
   align-items: center;
   padding: 1rem 3rem;
   height: 80px;
-z-index: 999;
+  z-index: 99999;
 }
 
 .navbar_links {
@@ -58,12 +58,15 @@ z-index: 999;
   border-radius: var(--border-radius);
   transition-duration: 0.3s;
 }
+
 .logout {
   background-color: var(--primary-color);
 }
+
 .logout p {
   color: white;
 }
+
 .signIn:hover {
   background-color: var(--primary-color);
   color: white;
@@ -107,6 +110,7 @@ z-index: 999;
   cursor: pointer;
   border-radius: var(--border-radius);
 }
+
 .navbar_menu_container button {
   color: var(--primary-color);
   background: white;
@@ -195,6 +199,7 @@ z-index: 999;
   .navbar {
     padding: 2rem;
   }
+
   .navbar p {
     font-size: 2.5rem;
     margin: 4rem 2rem;
@@ -212,6 +217,7 @@ z-index: 999;
   .navbar_menu_container_links_sign {
     display: block;
   }
+
   .logout p {
     margin: 0;
     border: 2px solid var(--primary-color);
@@ -244,6 +250,6 @@ z-index: 999;
   letter-spacing: 1px;
   font-style: bold;
   font-weight: 700;
-  
+
   line-height: 9rem;
 }
