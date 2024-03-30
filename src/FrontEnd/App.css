@@ -9,6 +9,21 @@ html {
   font-family: var(--font-family);
   color: #1d2130;
 }
+/* body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex-grow: 1;
+} */
 
 a {
   cursor: pointer;

@@ -6,15 +6,7 @@ import { SearchBar } from "../../components/searchBar/SearchBar";
 import allServices from "../../Data/ServicesImports";
 import { Cities } from "../../Data/CityData";
 
-// import { Test } from "../Test";
-
 export const Header = () => {
-  // const [show, setShow] = useState(false);
-
-  // const onclickHandler = (item) => {
-  //   setShow(true);
-  // };
-
   return (
     <div className={headerStyles.container}>
       <div className={headerStyles.title}>
@@ -42,7 +34,6 @@ export const Header = () => {
           {categoriesData.map((item) => (
             <div
               key={item.id}
-              // onClick={() => onclickHandler(item)}
               className={headerStyles.categories_container_item}
             >
               <Link to={"/categories/" + item.id}>
@@ -51,7 +42,6 @@ export const Header = () => {
               </Link>
             </div>
           ))}
-          {/* <Test showModal={show} closeModal={() => setShow(false)} /> */}
         </div>
       </div>
     </div>
