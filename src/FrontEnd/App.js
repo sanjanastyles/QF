@@ -42,6 +42,9 @@ import OTPpage from './QF/pages/otp/otppage';
 import ProfilePage from './QF/pages/professional/Dashboard/dashboard';
 import ChatPage from './QF/pages/chat/chatpage';
 import MapPage from './QF/pages/map/map';
+import CheckoutPage from './QF/pages/checkout/chekoutPage';
+import PaymentSuccessPage from './QF/pages/success/success';
+import ErrorPage from './QF/pages/error/errorpsge';
 
 
 
@@ -101,6 +104,9 @@ function App() {
 
         {/* Link in pages/services/ServicesCategories*/}
         <Route path="/Categories/:category" element={<AllServices />} />
+        <Route path="/checkout/:id" element={<CheckoutPage />} />
+        <Route path="/success" element={<PaymentSuccessPage/>} />
+        <Route path="/error" element={<ErrorPage/>} />
 
 
         {/* Link in components/services/services.jsx */}

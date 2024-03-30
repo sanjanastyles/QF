@@ -1,6 +1,6 @@
-// import { loadStripe } from '@stripe/stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 
-// let stripePromise;
+let stripePromise;
 export async function postData(url = '', data = {}) {
   const response = await fetch(url, {
     method: 'POST',
@@ -76,12 +76,12 @@ export function deleteAllCookies() {
   }
 }
 
-// export const getStripe = () => {
-//   if (!stripePromise) {
-//     stripePromise = loadStripe(process.env.REACT_APP_STRIPE_KEY);
-//   }
-//   return stripePromise;
-// };
+export const getStripe = () => {
+  if (!stripePromise) {
+    stripePromise = loadStripe(process.env.REACT_APP_STRIPE_KEY);
+  }
+  return stripePromise;
+};
 
 // export function apiInfo() {
 //   const apiPath =

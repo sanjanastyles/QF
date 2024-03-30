@@ -1,213 +1,123 @@
-/* Chat page container */
+/* Payment Method Section */
+.payment-method-container {
+  margin-top: 10px;
+}
+
+.payment-method-container span {
+  margin-right: 10px;
+}
+
+.payment-method-container label {
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+/* Hide radio buttons */
+/* .payment-method-container input[type="radio"] {
+  display: none;
+} */
+
+/* Custom radio button styles */
+/* .payment-method-container label::before {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+  border: 1px solid #aaa;
+  border-radius: 50%;
+  background-color: #fff;
+} */
+
+/* Checked state of radio button */
+/* .payment-method-container input[type="radio"]:checked + label::before {
+  background-color: #007bff;
+} */
+
+/* Checked state of radio button - indicator */
+.payment-method-container input[type="radio"]:checked + label::after {
+  content: '';
+  display: block;
+  width: 8px;
+  height: 8px;
+  margin: 3px;
+  border-radius: 50%;
+  background-color: #fff;
+}
+
 .chat-page-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    background-color: #f8f9fa;
-    font-family: 'Roboto', sans-serif;
-  }
-  
-  /* User info section */
-  .user-info {
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  .user-info p {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #333;
-  }
-  
-  .confirm-pay-btn {
-    background-color: #007bff;
-    color: #fff;
-    font-size: 1.2rem;
-    font-weight: bold;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .confirm-pay-btn:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Chat container */
-  .chat-container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 800px;
-    margin-top: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Message container */
-  .message-container {
-    flex-grow: 1;
-    overflow-y: auto;
-    padding: 20px;
-  }
-  
-  /* Individual message */
-  .message {
-    margin-bottom: 20px;
-  }
-  
-  .message p {
-    font-size: 1.2rem;
-    color: #333;
-  }
-  
-  .message .sender-name {
-    font-weight: bold;
-    color: #007bff;
-  }
-  
-  /* Input container */
-  .input-container {
-    display: flex;
-    align-items: center;
-    padding: 20px;
-  }
-  
-  .message-input {
-    flex-grow: 1;
-    padding: 12px;
-    font-size: 1.2rem;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-    outline: none;
-  }
-  
-  .send-btn {
-    background-color: #007bff;
-    color: #fff;
-    font-size: 1.2rem;
-    font-weight: bold;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 5px;
-    margin-left: 20px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .send-btn:hover {
-    background-color: #0056b3;
-  }
-/* Chat page container */
-.chat-page-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    background-color: #f8f9fa;
-    font-family: 'Roboto', sans-serif;
-  }
-  
-  /* User info section */
-  .user-info {
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  .user-info p {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #333;
-  }
-  
-  .confirm-pay-btn {
-    background-color: #007bff;
-    color: #fff;
-    font-size: 1.2rem;
-    font-weight: bold;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .confirm-pay-btn:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Chat container */
-  .chat-container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 800px;
-    margin-top: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Message container */
-  .message-container {
-    flex-grow: 1;
-    overflow-y: auto;
-    padding: 20px;
-  }
-  
-  /* Individual message */
-  .message {
-    margin-bottom: 20px;
-  }
-  
-  .message p {
-    font-size: 1.2rem;
-    color: #333;
-  }
-  
-  .message .sender-name {
-    font-weight: bold;
-    color: #007bff;
-  }
-  
-  /* Input container */
-  .input-container {
-    display: flex;
-    align-items: center;
-    padding: 20px;
-  }
-  
-  .message-input {
-    flex-grow: 1;
-    padding: 12px;
-    font-size: 1.2rem;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-    outline: none;
-  }
-  
-  .send-btn {
-    background-color: #007bff;
-    color: #fff;
-    font-size: 1.2rem;
-    font-weight: bold;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 5px;
-    margin-left: 20px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .send-btn:hover {
-    background-color: #0056b3;
-  }
-    
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.user-info {
+  margin-bottom: 20px;
+}
+
+.confirm-pay-btn {
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.confirm-pay-btn:hover {
+  background-color: #388e3c;
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  height: 70%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.message-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.message {
+  margin-bottom: 10px;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+}
+
+.message-input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.send-btn {
+  padding: 8px 15px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.send-btn:hover {
+  background-color: #0056b3;
+}
