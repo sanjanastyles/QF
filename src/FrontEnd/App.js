@@ -3,22 +3,26 @@ import router from './Route';
 import { Navbar } from './components/navbar/Navbar';
 import { Footer } from './components/footer/Footer';
 import ScrollToTop from './ScrollToTop';
+import './App.css'
 
 function App() {
   return (
     // <Router>
-    <div>
+    <div className='app'>
 
       <Navbar />
-      <ScrollToTop/>
+      <ScrollToTop />
       <Routes>
         {router.routes.map((route, index) => (
-          <Route key={index + 'Router'} path={route.path} element={route.element} />
+          <Route key={index + 'Router'} path={route.path} element={<div className="content">
+            {route.element}
+          </div>
+          } />
         ))}
       </Routes>
       <Footer />
       {/* <ChatBuuble /> */}
-      </div>
+    </div>
     // </Router>
   );
 }
