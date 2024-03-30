@@ -4,9 +4,17 @@
  - Encrypt Stuff(password and stuff) 
  - secure endpoints
  - Css changes
- - Payment Integration
- - Review stuff
- - Map
+
+## env format
+
+```js
+
+REACT_APP_STRIPE_KEY="*************"
+REACT_APP_PRICE_KEY="*********************"
+REACT_APP_PROD_API_PATH="https://titan-dmff.onrender.com"
+REACT_APP_DEV_API_PATH="http://localhost:8080"
+
+```
 
 ## Front End
 
