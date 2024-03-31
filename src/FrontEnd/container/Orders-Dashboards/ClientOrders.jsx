@@ -150,7 +150,7 @@ function Section({ title, data, confirm, deleteBooking, cancel }) {
   );
 }
 
-function CustomCard({ bookingId, serviceName, description, customerName,contactNumber,status, dateOfAppointment, dateOfBooking, professional, confirm, cancel, deleteBooking,associatedCustomer, associatedServiceman }) {
+function CustomCard({ bookingId, serviceName, description, customerName, contactNumber, status, dateOfAppointment, dateOfBooking, professional, confirm, cancel, deleteBooking, associatedCustomer, associatedServiceman }) {
 
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -200,7 +200,7 @@ function CustomCard({ bookingId, serviceName, description, customerName,contactN
 function RenderButton(status, confirm, id, deleteBooking, cancel, pId, associatedCustomer) {
   const navigate = useNavigate()
   const handleChat = async () => {
-    navigate(`/chat/${pId}/${associatedCustomer}/${id}`)
+    navigate(`/chat/${pId}/${associatedCustomer}/${id}`, { state: { data: pId } })
   };
   if (status === "Pending") {
     return (
