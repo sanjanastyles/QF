@@ -61,7 +61,7 @@ const ChatPage = () => {
             return;
         }
 
-        socket.on(`${param.b}`, (message) => {
+        socket.on("newMessage", (message) => {
             console.log("MESS", message);
             if (!document.hasFocus()) {
                 const sound = new Audio(messageSound);

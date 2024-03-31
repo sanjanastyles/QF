@@ -47,14 +47,15 @@ export const Navbar = () => {
           <p>
 
 
-            {userData.type === "admin" ? (
+            {userData.type === "admin" && (
               <Link to="/admin-dashboard">Admin Dashboard</Link>
-            ) : (
-              <Link to="/dashboard">Dashboard</Link>
-            )}
-
+            )
+            }
 
           </p>
+          {userData.type !== "admin" && getCookie("userId") ? <p><Link to="/dashboard">Dashboard</Link></p> : null}
+
+
           {userData.type !== "admin" && <p><Link to="/ContactUs">Contact Us</Link></p>}
         </div>
       </div>
@@ -84,17 +85,22 @@ export const Navbar = () => {
               <div className={navbarStyles.navbar_menu_container_links}>
                 <p onClick={() => setToggleMenu(false)}><Link to="/">Home</Link></p>
                 <p onClick={() => setToggleMenu(false)}><Link to="/Categories">Categories</Link></p>
-                <p onClick={() => setToggleMenu(false)}><Link to="/RegisterAsProfessional">Register As Professional</Link></p>
-                <p onClick={() => setToggleMenu(false)}>
-                  {userData.role === "A" ? (
+                {userData.isServiceman === "C" && <p><Link to="/RegisterAsProfessional">Register As Professional</Link></p>}
+                {getCookie('userId') && userData.type !== "admin" ? <p><Link to="/orders">Your orders</Link></p> : null}
+
+                <p>
+
+
+                  {userData.type === "admin" && (
                     <Link to="/admin-dashboard">Admin Dashboard</Link>
-                  ) : userData.isServiceman === "P" ? (
-                    <Link to="/under-construction">Professional Dashboard</Link>
-                  ) : (
-                    <Link to="/under-construction">User Dashboard</Link>
-                  )}
+                  )
+                  }
+
                 </p>
-                <p onClick={() => setToggleMenu(false)}><Link to="/ContactUs">Contact Us</Link></p>
+                {userData.type !== "admin" && getCookie("userId") ? <p><Link to="/dashboard">Dashboard</Link></p> : null}
+
+
+                {userData.type !== "admin" && <p onClick={() => setToggleMenu(false)}><Link to="/ContactUs">Contact Us</Link></p>}
               </div>
               <div className={navbarStyles.navbar_menu_container_links_sign}>
                 <p onClick={() => setToggleMenu(false)} className={navbarStyles.signIn}>
