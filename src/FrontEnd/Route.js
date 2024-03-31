@@ -132,9 +132,9 @@ const routerConfig = [
     {
         path: '/SignUp/otp',
         element: (
-            <ProtectedRoute>
+            // <ProtectedRoute>
                 <OTPpage />
-            </ProtectedRoute>
+            // {/* </ProtectedRoute> */}
         ),
     },
     {

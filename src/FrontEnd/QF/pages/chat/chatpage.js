@@ -1,18 +1,22 @@
 import React, { useState, useEffect, useRef } from 'react';
 import messageSound from '../../asset/sound/message.mp3';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import { useSocket } from '../../context/socket';
 import { getCookie } from '../../utils/utils';
 import { BASE_PATH } from '../../constants/constant';
 import './chat.css';
 
 const ChatPage = () => {
-    const [userData, _] = useState(localStorage.getItem("response"));
+    const location = useLocation();
+    const [userData, setUserData] = useState("");
+
+    const serviceManId = location.state.data;
     const param = useParams();
     const { socket, setSocketUserId, onlineUsers } = useSocket();
     const [paymentMethod, setPaymentMethod] = useState('cod'); // Default to Cash on Delivery
-
+    
     useEffect(() => {
+        setUserData(JSON.parse(localStorage.getItem("response")))
         setSocketUserId(getCookie('userId')); // Set user ID when component mounts
     }, [setSocketUserId, param.s, param.c]);
 
@@ -56,13 +60,13 @@ const ChatPage = () => {
         getConversations();
     }, [param.bookingId]);
 
+    console.log(conversations, userData.name);
     useEffect(() => {
         if (!socket) {
             return;
         }
 
-        socket.on(`${param.b}`, (message) => {
-            console.log("MESS", message);
+        socket.on("newMessage", (message) => {
             if (!document.hasFocus()) {
                 const sound = new Audio(messageSound);
                 sound.play();
@@ -126,38 +130,41 @@ const ChatPage = () => {
     return (
         <div className="chat-page-container">
             <div className="user-info">
-                <p>{userData?.name}</p>
 
-                <div className="payment-method-container">
-                    <span>Payment Method:</span>
-                    <label>
-                        <input
-                            type="radio"
-                            value="cod"
-                            checked={paymentMethod === 'cod'}
-                            onChange={handlePaymentMethodChange}
-                        />
-                        COD
-                    </label>
-                    <label>
-                        <input
-                            type="radio"
-                            value="card"
-                            checked={paymentMethod === 'card'}
-                            onChange={handlePaymentMethodChange}
-                        />
-                        Card
-                    </label>
+                {serviceManId !== getCookie('userId') ? <div className="payment-method-container">
+                    <p>Hi {userData?.name} , please Choose the Payment method and other important Details</p>
+                    <div style={{margin:"24px"}}>
+                        <span>Payment Method:</span>
+                        <label>
+                            <input
+                                type="radio"
+                                value="cod"
+                                checked={paymentMethod === 'cod'}
+                                onChange={handlePaymentMethodChange}
+                            />
+                            COD
+                        </label>
+                        <label>
+                            <input
+                                type="radio"
+                                value="card"
+                                checked={paymentMethod === 'card'}
+                                onChange={handlePaymentMethodChange}
+                            />
+                            Card
+                        </label>
 
-                    <a
-                        href={paymentMethod === "cod" ? `/dashboard` : `/checkout/${getCookie('userId')}`}
-                        className="confirm-pay-btn"
-                        type="button"
-                        title="Click here to chat and negotiate price or share other vital information"
-                    >
-                        Proceed
-                    </a>
-                </div>
+                        <a
+                            href={paymentMethod === "cod" ? `/dashboard` : `/checkout/${getCookie('userId')}`}
+                            className="confirm-pay-btn"
+                            type="button"
+                            title="Click here to chat and negotiate price or share other vital information"
+                        >
+                            Proceed
+                        </a>
+                    </div>
+                </div> : <p>Hi {userData?.name} , please Confirm the Price and other important Details</p>
+                }
 
             </div>
             <div className="chat-container">
