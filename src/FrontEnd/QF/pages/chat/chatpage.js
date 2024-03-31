@@ -7,12 +7,13 @@ import { BASE_PATH } from '../../constants/constant';
 import './chat.css';
 
 const ChatPage = () => {
-    const [userData, _] = useState(localStorage.getItem("response"));
+    const [userData, setUserData] = useState("");
     const param = useParams();
     const { socket, setSocketUserId, onlineUsers } = useSocket();
     const [paymentMethod, setPaymentMethod] = useState('cod'); // Default to Cash on Delivery
 
     useEffect(() => {
+        setUserData(JSON.parse(localStorage.getItem("response")))
         setSocketUserId(getCookie('userId')); // Set user ID when component mounts
     }, [setSocketUserId, param.s, param.c]);
 
@@ -56,13 +57,13 @@ const ChatPage = () => {
         getConversations();
     }, [param.bookingId]);
 
+    console.log(conversations, userData.name);
     useEffect(() => {
         if (!socket) {
             return;
         }
 
         socket.on("newMessage", (message) => {
-            console.log("MESS", message);
             if (!document.hasFocus()) {
                 const sound = new Audio(messageSound);
                 sound.play();
