@@ -25,6 +25,7 @@ export const Navbar = () => {
     navigate("/");
     deleteAllCookies()
 
+
     window.location.reload();
     toast.success("Logged out Successfully");
   };
@@ -43,7 +44,7 @@ export const Navbar = () => {
           <p><Link to="/Categories">Categories</Link></p>
           {userData.isServiceman === "C" && <p><Link to="/RegisterAsProfessional">Register As Professional</Link></p>}
           {getCookie('userId') && userData.type !== "admin" ? <p><Link to="/orders">Your orders</Link></p> : null}
-
+          
           <p>
 
 

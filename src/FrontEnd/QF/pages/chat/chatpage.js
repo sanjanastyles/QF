@@ -14,7 +14,7 @@ const ChatPage = () => {
     const param = useParams();
     const { socket, setSocketUserId, onlineUsers } = useSocket();
     const [paymentMethod, setPaymentMethod] = useState('cod'); // Default to Cash on Delivery
-
+    
     useEffect(() => {
         setUserData(JSON.parse(localStorage.getItem("response")))
         setSocketUserId(getCookie('userId')); // Set user ID when component mounts
