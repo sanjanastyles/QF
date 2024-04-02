@@ -37,80 +37,89 @@ const CheckoutPage = () => {
     };
 
     return (
-        <div className="container mx-auto mt-8 text-gray-800">
-            <div className="flex justify-between items-center mb-8">
-                <div className="mr-8">
-                    <h1 className="text-3xl font-bold mb-4">Checkout</h1>
+        <>
+            <div className="thank-you-page">
+                <h1>Thanks for choosing Quick Fix!</h1>
+                <p>You're just one step away from booking.</p>
+                <p>Click on the link below to proceed with payment:</p>
+                <a
+                    href="https://buy.stripe.com/test_6oE3fKg140Sl6XKcMN"
+                    className="btn-green"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Go to Stripe Payment
+                </a>
+            </div></>
+    )
+    // return (
+    //     // <div className="container mx-auto mt-8 text-gray-800">
+    //     //     <div className="flex justify-between items-center mb-8">
+    //     //         <div className="mr-8">
+    //     //             <h1 className="text-3xl font-bold mb-4">Checkout</h1>
 
-                    {/* Service and Service Man Section */}
-                    <div className="mb-4">
-                        <CheckoutSection title="Selected Service" content="Service Name" />
-                    </div>
+    //     //             {/* Service and Service Man Section */}
+    //     //             <div className="mb-4">
+    //     //                 <CheckoutSection title="Selected Service" content="Service Name" />
+    //     //             </div>
 
-                    <div>
-                        <CheckoutSection title="Selected Service Man" content="Service Man Name" />
-                    </div>
-                </div>
+    //     //             <div>
+    //     //                 <CheckoutSection title="Selected Service Man" content="Service Man Name" />
+    //     //             </div>
+    //     //         </div>
 
-                {/* Track Address Button */}
-                <button onClick={() => navigate(`/map/${getCookie("userId")}`)} className="btn-blue">Track Address</button>
-            </div>
+    //     //         {/* Track Address Button */}
+    //     //         <button onClick={() => navigate(`/map/${getCookie("userId")}`)} className="btn-blue">Track Address</button>
+    //     //     </div>
 
-            {/* Address Section */}
-            <div className="mb-8">
-                <h2 className="text-2xl font-bold mb-4">Delivery Address</h2>
-                <CheckoutSection title="Name" content="John Doe" />
-                <CheckoutSection title="Address" content="123 Main Street" />
-                <CheckoutSection title="City, Country" content="City, Country" />
-            </div>
+    //         {/* Address Section */}
+    //         // <div className="mb-8">
+    //         //     <h2 className="text-2xl font-bold mb-4">Delivery Address</h2>
+    //         //     <CheckoutSection title="Name" content="John Doe" />
+    //         //     <CheckoutSection title="Address" content="123 Main Street" />
+    //         //     <CheckoutSection title="City, Country" content="City, Country" />
+    //         // </div>
 
-            {/* Price Summary Section */}
-            {/* <div className="border-t pt-4"> */}
-            {/* <h2 className="text-2xl font-bold mb-4">Price Summary</h2> */}
+    //         // {/* Price Summary Section */}
+    //         // {/* <div className="border-t pt-4"> */}
+    //         // {/* <h2 className="text-2xl font-bold mb-4">Price Summary</h2> */}
 
-            {/* Input for Service Cost */}
-            {/* <div className="flex justify-between mb-2">
-                    <label htmlFor="serviceCost">Service Cost:</label>
-                    <input
-                        id="serviceCost"
-                        type="number"
-                        step="0.01"
-                        min="0"
-                        value={serviceCost}
-                        onChange={handleServiceCostChange}
-                        placeholder="Enter service cost"
-                        className="input-field"
-                    />
-                </div> */}
+    //         // {/* Input for Service Cost */}
+    //         // {/* <div className="flex justify-between mb-2">
+    //             //     <label htmlFor="serviceCost">Service Cost:</label>
+    //             //     <input
+    //             //         id="serviceCost"
+    //             //         type="number"
+    //             //         step="0.01"
+    //             //         min="0"
+    //             //         value={serviceCost}
+    //             //         onChange={handleServiceCostChange}
+    //             //         placeholder="Enter service cost"
+    //             //         className="input-field"
+    //             //     />
+    //             // </div> */}
 
-            {/* Display GST and Total Price */}
-            {/* <div className="flex justify-between mb-2">
-                    <span>GST (18%):</span>
-                    <span>${(serviceCost * 0.18).toFixed(2)}</span>
-                </div>
-                <div className="flex justify-between mb-2">
-                    <span>Total Price:</span>
-                    <span>${(parseFloat(serviceCost) + (parseFloat(serviceCost) * 0.18)).toFixed(2)}</span>
-                </div> */}
+    //         // {/* Display GST and Total Price */}
+    //         // {/* <div className="flex justify-between mb-2">
+    //         //         <span>GST (18%):</span>
+    //         //         <span>${(serviceCost * 0.18).toFixed(2)}</span>
+    //         //     </div>
+    //         //     <div className="flex justify-between mb-2">
+    //         //         <span>Total Price:</span>
+    //         //         <span>${(parseFloat(serviceCost) + (parseFloat(serviceCost) * 0.18)).toFixed(2)}</span>
+    //         //     </div> */}
 
-            {/* Checkout Button */}
-            {/* <button 
-                onClick={handleCheckout}>
-                Checkout
-            </button> */}
+    //         // {/* Checkout Button */}
+    //         // {/* <button 
+    //         //     onClick={handleCheckout}>
+    //         //     Checkout
+    //         // </button> */}
 
-            {/* </div> */}
-            <a
-                href="https://buy.stripe.com/test_6oE3fKg140Sl6XKcMN"
-                className="btn-green"
-                // className="btn-stripe"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                Go to Stripe Payment
-            </a>
-        </div>
-    );
+    //         // {/* </div> */}
+
+    //     // </div>
+
+    // );
 };
 
 // Reusable component for each section in the checkout page

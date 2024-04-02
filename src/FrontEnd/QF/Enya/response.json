@@ -1,0 +1,93 @@
+{
+    "responses": [
+      {
+        "keywords": ["plumbing", "leak", "pipe"],
+        "response": "Our expert plumbers can fix any plumbing issues you may have. Please provide your location so we can send someone over."
+      },
+      {
+        "keywords": ["electrician", "power", "outage"],
+        "response": "Our electricians are available to help with any electrical problems. Let us know your address, and we'll send assistance right away."
+      },
+      {
+        "keywords": ["cleaning", "house", "maid"],
+        "response": "Our professional cleaners can tidy up your home in no time. Book a cleaning service now for a spotless house."
+      },
+      {
+        "keywords": ["carpentry", "furniture", "repair"],
+        "response": "Need help with furniture repair or carpentry work? Our skilled carpenters are here to assist you. Schedule a service today."
+      },
+      {
+        "keywords": ["painting", "walls", "interior"],
+        "response": "Looking to refresh your interiors with a new coat of paint? Our expert painters will transform your space. Book now!"
+      },
+      {
+        "keywords": ["gardening", "lawn", "plants"],
+        "response": "Want to spruce up your garden or maintain your lawn? Our experienced gardeners can help you achieve a beautiful outdoor space."
+      },
+      {
+        "keywords": ["beauty", "salon", "makeup"],
+        "response": "Get pampered with our beauty and salon services. Book an appointment for a relaxing spa day or a makeover session."
+      },
+      {
+        "keywords": ["massage", "therapist", "relaxation"],
+        "response": "Stressed out? Treat yourself to a rejuvenating massage from our skilled therapists. Schedule a session for ultimate relaxation."
+      },
+      {
+        "keywords": ["pest", "control", "insect"],
+        "response": "Dealing with pests? Our pest control experts can help you get rid of unwanted insects and rodents. Contact us for a pest-free home."
+      },
+      {
+        "keywords": ["photographer", "event", "photoshoot"],
+        "response": "Capture special moments with our professional photographers. Whether it's a wedding or a corporate event, we've got you covered."
+      },
+      {
+        "keywords": ["tutor", "education", "learning"],
+        "response": "Need academic assistance? Our qualified tutors offer personalized learning sessions to help you excel in your studies."
+      },
+      {
+        "keywords": ["planning", "event", "organizer"],
+        "response": "Planning an event? Let our experienced event organizers handle the details. From weddings to parties, we'll make it memorable."
+      },
+      {
+        "keywords": ["fitness", "trainer", "exercise"],
+        "response": "Get fit with our certified fitness trainers. Whether you're a beginner or an athlete, we'll design a workout plan tailored to your needs."
+      },
+      {
+        "keywords": ["repair", "appliances", "technician"],
+        "response": "Appliance acting up? Our skilled technicians can repair any household appliance. Schedule a service for quick fixes."
+      },
+      {
+        "keywords": ["consultation", "legal", "advice"],
+        "response": "Need legal advice or consultation? Our experienced lawyers are here to assist you with any legal matters. Book a consultation now."
+      },
+      {
+        "keywords": ["health", "doctor", "medical"],
+        "response": "Take care of your health with our qualified doctors and medical professionals. Schedule a check-up or consultation today."
+      },
+      {
+        "keywords": ["hi", "hello", "hey"],
+        "response": "Hello! How can I assist you today?"
+      },
+      {
+        "keywords": ["how are you", "what's up", "how's it going"],
+        "response": "I'm doing well, thank you! How about you?"
+      },
+      {
+        "keywords": ["thank you", "thanks"],
+        "response": "You're welcome! If you need any further assistance, feel free to ask."
+      },
+      {
+        "keywords": ["bye", "goodbye", "see you later"],
+        "response": "Goodbye! Have a great day!"
+      },
+      {
+        "keywords": ["help", "support", "assistance"],
+        "response": "I'm here to help! What do you need assistance with?"
+      },
+      {
+        "keywords": ["not sure", "uncertain", "unknown"],
+        "response": "I'm still in prototype phase. Please contact customer support for assistance. "
+      }
+    ]
+  }
+  

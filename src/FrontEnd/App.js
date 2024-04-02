@@ -4,6 +4,7 @@ import { Navbar } from './components/navbar/Navbar';
 import { Footer } from './components/footer/Footer';
 import ScrollToTop from './ScrollToTop';
 import './App.css'
+import ChatBubble from './QF/Enya';
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
         ))}
       </Routes>
       <Footer />
-      {/* <ChatBuuble /> */}
+      <ChatBubble/>
     </div>
     // </Router>
   );

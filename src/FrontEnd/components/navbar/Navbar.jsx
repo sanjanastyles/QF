@@ -69,7 +69,9 @@ export const Navbar = () => {
           {userData.name || userData.fullName ? (
             <p onClick={handleLogout}>Logout</p>
           ) : (
-            <Link to="/SignUp">Sign up</Link>
+            <p>
+              <Link to="/SignUp">Sign up</Link>
+            </p>
           )}
         </p>
       </div>
