@@ -25,7 +25,7 @@ const ChatPage = () => {
     const [conversations, setConversations] = useState([]);
 
     const handleInput = (e) => {
-        setMessage(e.target.value.trim());
+        setMessage(e.target.value);
     };
 
     useEffect(() => {
