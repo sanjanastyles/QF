@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import './chatBox.css';
-import responsesData from './response.json';
+import { postData } from '../utils/utils';
 
 const ChatBox = () => {
   const [isChatboxOpen, setIsChatboxOpen] = useState(true);
@@ -29,7 +29,7 @@ const ChatBox = () => {
   const addUserMessage = (message) => {
     const messageElement = document.createElement('div');
     messageElement.classList.add('mb-2', 'text-right');
-    messageElement.innerHTML = `<p class="bg-blue-500 text-white rounded-lg py-2 px-4 inline-block">${message}</p>`;
+    messageElement.innerHTML = `<p class="user-msg-container">${message}</p>`;
     chatboxRef.current.appendChild(messageElement);
     chatboxRef.current.scrollTop = chatboxRef.current.scrollHeight;
   };
@@ -37,15 +37,13 @@ const ChatBox = () => {
   const addBotMessage = (message) => {
     const messageElement = document.createElement('div');
     messageElement.classList.add('mb-2');
-    messageElement.innerHTML = `<p class="bg-gray-200 text-gray-700 rounded-lg py-2 px-4 inline-block">${message}</p>`;
+    messageElement.innerHTML = `<p class="msg-container">${message}</p>`;
     chatboxRef.current.appendChild(messageElement);
     chatboxRef.current.scrollTop = chatboxRef.current.scrollHeight;
   };
 
-  const respondToUser = (userMessage) => {
-    const matchingResponse = responsesData.responses.find(response =>
-      response.keywords.some(keyword => userMessage.toLowerCase().includes(keyword))
-    );
+  const respondToUser = async (userMessage) => {
+    const matchingResponse = await postData("http://localhost:8000/bot/enya", {msg:userMessage.toLocaleLowerCase()})
 
     const botResponse = matchingResponse ? matchingResponse.response : "I'm still in prototype phase. Please contact customer support for assistance. Here's the link";
 
