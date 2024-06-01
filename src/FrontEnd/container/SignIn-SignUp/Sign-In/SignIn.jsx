@@ -40,17 +40,21 @@ export const SignIn = () => {
     e.preventDefault();
 
     try {
-      const response = postData(LOGIN_PATH, { email: values.email, password: values.password }).then(e => {
-        if (e.code === 200) {
-          setCookie('userId', e.data._id)
-          localStorage.setItem("response", JSON.stringify(e?.data));
-          window.location.reload();
-        }
-      }).catch(e => { throw new Error("SOMETHING WRONG"); })
+      postData(LOGIN_PATH, { email: values.email, password: values.password })
+        .then((e) => {
+          if (e.code === 200) {
+            setCookie("userId", e.data._id);
+            localStorage.setItem("response", JSON.stringify(e?.data));
+            window.location.reload();
+            toast.success("Login Successfull");
+          }
+        })
+        .catch((e) => {
+          toast.success("Login Failed");
+          throw new Error("SOMETHING WRONG");
+        });
       navigate("/");
-      toast.success("Login Successfull");
-    }
-    catch (err) {
+    } catch (err) {
       if (!err?.response) {
         toast.error("No Server Response");
       } else if (err.response?.status === 400) {

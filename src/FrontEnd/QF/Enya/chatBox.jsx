@@ -1,6 +1,6 @@
-import React, { useState, useRef } from 'react';
-import './chatBox.css';
-import { postData } from '../utils/utils';
+import React, { useState, useRef } from "react";
+import "./chatBox.css";
+import { postData } from "../utils/utils";
 
 const ChatBox = () => {
   const [isChatboxOpen, setIsChatboxOpen] = useState(true);
@@ -13,39 +13,57 @@ const ChatBox = () => {
 
   const handleSend = () => {
     const userMessage = userInputRef.current.value;
-    if (userMessage.trim() !== '') {
+    if (userMessage.trim() !== "") {
       addUserMessage(userMessage);
       respondToUser(userMessage);
-      userInputRef.current.value = '';
+      userInputRef.current.value = "";
     }
   };
 
   const handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
+    if (event.key === "Enter") {
       handleSend();
     }
   };
 
   const addUserMessage = (message) => {
-    const messageElement = document.createElement('div');
-    messageElement.classList.add('mb-2', 'text-right');
+    const messageElement = document.createElement("div");
+    messageElement.classList.add("mb-2", "text-right");
     messageElement.innerHTML = `<p class="user-msg-container">${message}</p>`;
     chatboxRef.current.appendChild(messageElement);
     chatboxRef.current.scrollTop = chatboxRef.current.scrollHeight;
   };
 
   const addBotMessage = (message) => {
-    const messageElement = document.createElement('div');
-    messageElement.classList.add('mb-2');
-    messageElement.innerHTML = `<p class="msg-container">${message}</p>`;
+    const messageElement = document.createElement("div");
+    messageElement.classList.add("mb-2");
+    messageElement.innerHTML = `<p class="msg-container">${message}
+    
+<br/>
+    Here's the link to checkout all the services
+    <a href="http://localhost:3000/Categories">
+      http://localhost:3000/Categories
+    </a>
+  
+    </p>`;
+
     chatboxRef.current.appendChild(messageElement);
     chatboxRef.current.scrollTop = chatboxRef.current.scrollHeight;
   };
 
   const respondToUser = async (userMessage) => {
-    const matchingResponse = await postData("http://localhost:8000/bot/enya", {msg:userMessage.toLocaleLowerCase()})
+    let botResponse = "";
+    const matchingResponse = await postData("http://localhost:8080/bot/enya", {
+      msg: userMessage.toLocaleLowerCase(),
+    });
 
-    const botResponse = matchingResponse ? matchingResponse.response : "I'm still in prototype phase. Please contact customer support for assistance. Here's the link";
+    if (matchingResponse.error) {
+      botResponse =
+        "I'm still in prototype phase. Please contact customer support for assistance. Here's the link";
+    }
+    botResponse = matchingResponse?.response
+      ? matchingResponse.response
+      : "I'm still in prototype phase. Please contact customer support for assistance. Here's the link";
 
     setTimeout(() => {
       addBotMessage(botResponse);
@@ -56,7 +74,9 @@ const ChatBox = () => {
     <div className="fixed bottom-0 right-0 mb-4 mr-4">
       <div
         id="chat-container"
-        className={`fixed bottom-16 right-4 w-96 ${isChatboxOpen ? '' : 'hidden'}`}
+        className={`fixed bottom-16 right-4 w-96 ${
+          isChatboxOpen ? "" : "hidden"
+        }`}
       >
         <div className="bg-white shadow-md rounded-lg max-w-lg w-full">
           <div className="p-4 border-b bg-blue-500 text-white rounded-t-lg flex justify-between items-center">
@@ -73,7 +93,12 @@ const ChatBox = () => {
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
               </svg>
             </button>
           </div>
@@ -95,7 +120,11 @@ const ChatBox = () => {
             </button>
           </div>
 
-          <div id="chatbox" className="p-4 h-80 overflow-y-auto" ref={chatboxRef}></div>
+          <div
+            id="chatbox"
+            className="p-4 h-80 overflow-y-auto"
+            ref={chatboxRef}
+          ></div>
         </div>
       </div>
     </div>

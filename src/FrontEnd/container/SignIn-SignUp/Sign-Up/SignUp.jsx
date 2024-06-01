@@ -4,7 +4,6 @@
  *  - Make service api call to get data from backend
  */
 
-
 import { useState } from "react";
 import "../CommonSignInSignUp.css";
 import { FormInput } from "../Form-Inputs/FormInput";
@@ -18,7 +17,7 @@ import Switch from "@mui/material/Switch";
 const services = [
   { value: "", keyword: "SS", label: "Select a Service" },
   { value: "electrician", keyword: "EL", label: "electrician" },
-  { value: "plumbing", keyword: "PL", label: "plumbing" }
+  { value: "plumbing", keyword: "PL", label: "plumbing" },
 ];
 
 export const SignUp = () => {
@@ -36,8 +35,69 @@ export const SignUp = () => {
     password: "",
     confirmPassword: "",
     address: "",
-    selectedServices: []
+    selectedServices: [],
   });
+
+  // const [inputs, setInputs] = useState([
+  //   {
+  //     id: 1,
+  //     name: "fullName",
+  //     type: "text",
+  //     placeholder: "Full Name",
+  //     errorMessage:
+  //       "Username should be 3-16 characters and shouldn't include any special character!",
+  //     label: "Full Name",
+  //     required: true
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "email",
+  //     type: "email",
+  //     placeholder: "Email",
+  //     errorMessage: "It should be a valid email address!",
+  //     label: "Email",
+  //     required: true
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "phone",
+  //     type: "text",
+  //     placeholder: "Phone Number",
+  //     errorMessage: "10 digits required!",
+  //     label: "Phone Number",
+  //     required: true
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "password",
+  //     type: "password",
+  //     placeholder: "Password",
+  //     errorMessage:
+  //       "Password should be 8-20 characters and include at least 1 letter, 1 number and 1 special character!",
+  //     label: "Password",
+  //     pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
+  //     required: true
+  //   },
+  //   {
+  //     id: 5,
+  //     name: "confirmPassword",
+  //     type: "password",
+  //     placeholder: "Confirm Password",
+  //     errorMessage: "Passwords don't match!",
+  //     label: "Confirm Password",
+  //     pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
+  //     required: true
+  //   },
+  //   {
+  //     id: 6,
+  //     name: "address",
+  //     type: "address",
+  //     placeholder: "Address",
+  //     errorMessage: "It should be a valid  address!",
+  //     label: "Address",
+  //     required: true
+  //   },
+  // ]);
 
   const [inputs, setInputs] = useState([
     {
@@ -48,7 +108,7 @@ export const SignUp = () => {
       errorMessage:
         "Username should be 3-16 characters and shouldn't include any special character!",
       label: "Full Name",
-      required: true
+      required: true,
     },
     {
       id: 2,
@@ -57,7 +117,7 @@ export const SignUp = () => {
       placeholder: "Email",
       errorMessage: "It should be a valid email address!",
       label: "Email",
-      required: true
+      required: true,
     },
     {
       id: 3,
@@ -66,7 +126,7 @@ export const SignUp = () => {
       placeholder: "Phone Number",
       errorMessage: "10 digits required!",
       label: "Phone Number",
-      required: true
+      required: true,
     },
     {
       id: 4,
@@ -77,7 +137,7 @@ export const SignUp = () => {
         "Password should be 8-20 characters and include at least 1 letter, 1 number and 1 special character!",
       label: "Password",
       pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
-      required: true
+      required: true,
     },
     {
       id: 5,
@@ -87,16 +147,50 @@ export const SignUp = () => {
       errorMessage: "Passwords don't match!",
       label: "Confirm Password",
       pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
-      required: true
+      required: true,
     },
     {
       id: 6,
-      name: "address",
-      type: "address",
-      placeholder: "Address",
-      errorMessage: "It should be a valid  address!",
-      label: "Address",
-      required: true
+      name: "addressLine1",
+      type: "text",
+      placeholder: "Address Line 1",
+      errorMessage: "Address is required!",
+      label: "Address Line 1",
+      required: true,
+    },
+    {
+      id: 7,
+      name: "addressLine2",
+      type: "text",
+      placeholder: "Address Line 2",
+      label: "Address Line 2",
+    },
+    {
+      id: 8,
+      name: "city",
+      type: "text",
+      placeholder: "City",
+      errorMessage: "City is required!",
+      label: "City",
+      required: true,
+    },
+    {
+      id: 9,
+      name: "state",
+      type: "text",
+      placeholder: "State",
+      errorMessage: "State is required!",
+      label: "State",
+      required: true,
+    },
+    {
+      id: 10,
+      name: "postalCode",
+      type: "text",
+      placeholder: "Postal Code",
+      errorMessage: "Postal Code is required!",
+      label: "Postal Code",
+      required: true,
     },
   ]);
 
@@ -105,25 +199,25 @@ export const SignUp = () => {
     try {
       const userData = isProfessional
         ? {
-          name: values.fullName,
-          email: values.email,
-          password: values.password,
-          phone: values.phone,
-          address: values.address,
-          selectedServices: values.selectedServices,
-          isProfessional:"P"
-        }
+            name: values.fullName,
+            email: values.email,
+            password: values.password,
+            phone: values.phone,
+            address: values.address,
+            selectedServices: values.selectedServices,
+            isProfessional: "P",
+          }
         : {
-          name: values.fullName,
-          email: values.email,
-          password: values.password,
-          phone: values.phone,
-          address:values.address,
-          isProfessional:"C"
-        };
+            name: values.fullName,
+            email: values.email,
+            password: values.password,
+            phone: values.phone,
+            address: values.address,
+            isProfessional: "C",
+          };
       navigate("/SignUp/otp", { state: { userData } });
     } catch (err) {
-        toast.error("SOME ERROR HAPPENED ON OUR SIDE");
+      toast.error("SOME ERROR HAPPENED ON OUR SIDE");
     }
   };
 
@@ -131,7 +225,7 @@ export const SignUp = () => {
     const { name, value } = e.target;
     setValues((prevValues) => ({
       ...prevValues,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -142,31 +236,33 @@ export const SignUp = () => {
     switch (isChecked) {
       case true:
         setUrl("/professionals/register");
-        setInputs((prevInputs) => [
-          ...prevInputs,
-          {
-            id: 6,
-            name: "address",
-            type: "text",
-            placeholder: "Address",
-            errorMessage: "Address is required!",
-            label: "Address",
-            required: true
-          }
-        ]);
+        // setInputs((prevInputs) => [
+        //   ...prevInputs,
+        //   {
+        //     id: 6,
+        //     name: "address",
+        //     type: "text",
+        //     placeholder: "Address",
+        //     errorMessage: "Address is required!",
+        //     label: "Address",
+        //     required: true,
+        //   },
+        // ]);
         break;
       case false:
-        setUrl("/users/register");
-        setInputs((prevInputs) => prevInputs.slice(0, 5));
+        // setUrl("/users/register");
+        // setInputs((prevInputs) => prevInputs.slice(0, 5));
         break;
       default:
         break;
     }
   }
 
-  const handleServiceChange = (e, index) => {
+  const handleServiceChange = (e) => {
     const selectedService = JSON.parse(e.target.value);
-    const isAlreadySelected = values.selectedServices.filter(({ keyword }) => keyword === selectedService.keyword);
+    const isAlreadySelected = values.selectedServices.filter(
+      ({ keyword }) => keyword === selectedService.keyword
+    );
     if (isAlreadySelected.length > 0) {
       toast.error("Duplicate Service Error");
       return;
@@ -175,7 +271,10 @@ export const SignUp = () => {
     if (!values.selectedServices.includes(selectedService)) {
       setValues((prevValues) => ({
         ...prevValues,
-        selectedServices: [...prevValues.selectedServices, { keyword: selectedService.keyword, name: selectedService.value }]
+        selectedServices: [
+          ...prevValues.selectedServices,
+          { keyword: selectedService.keyword, name: selectedService.value },
+        ],
       }));
     }
   };
@@ -190,12 +289,23 @@ export const SignUp = () => {
         <div className="SignInSignUpTitle">Sign Up</div>
         <FormGroup>
           <FormControlLabel
-            control={<Switch defaultChecked checked={isProfessional} onChange={handleChange} />}
+            control={
+              <Switch
+                defaultChecked
+                checked={isProfessional}
+                onChange={handleChange}
+              />
+            }
             label="Professional"
           />
         </FormGroup>
         {inputs.map((input) => (
-          <FormInput key={input.id} {...input} value={values[input.name]} onChange={onChange} />
+          <FormInput
+            key={input.id}
+            {...input}
+            value={values[input.name]}
+            onChange={onChange}
+          />
         ))}
         {isProfessional && (
           <div>
@@ -220,7 +330,9 @@ export const SignUp = () => {
                 </select>
               </div>
             ))}
-            <button type="button" onClick={handleAddServiceField}>Add Service</button>
+            <button type="button" onClick={handleAddServiceField}>
+              Add Service
+            </button>
           </div>
         )}
         <button className="SignInSignUpButton">Submit</button>

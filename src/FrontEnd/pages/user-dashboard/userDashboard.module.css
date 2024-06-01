@@ -61,8 +61,7 @@
   color: green;
 }
 
-
-.loadButton{
+.loadButton {
   padding: 10px 20px;
   background-color: #007bff;
   color: #fff;
@@ -72,14 +71,14 @@
   margin: 2rem 0 0 0;
 }
 
-
 .ordersTable {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
 }
 
-.ordersTable th, .ordersTable td {
+.ordersTable th,
+.ordersTable td {
   border: 1px solid #ddd;
   padding: 12px;
   text-align: left;
@@ -100,7 +99,6 @@
   background-color: #ddd;
 }
 
-
 .pendingOrder {
   background-color: #ff5c5c; /* A lighter shade of red */
   color: #fff; /* White text on the red background */
@@ -108,5 +106,9 @@
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
-  
+}
+
+.review-container {
+  border: 1px solid black;
+  padding: 12px;
 }
