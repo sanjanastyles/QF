@@ -4,13 +4,17 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { dateFormatter, getCookie, getData } from "../../../utils/utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMapMarkerAlt, faUniversity } from "@fortawesome/free-solid-svg-icons";
+import {
+  faMapMarkerAlt,
+  faUniversity,
+} from "@fortawesome/free-solid-svg-icons";
 import "./dashboard.css";
 import { PRO_PAGE_PATH } from "../../../constants/constant";
 
 const ProfilePage = () => {
   const [data, setData] = useState();
   const { id, serviceId } = useParams();
+  const [review, setReview] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,6 +24,8 @@ const ProfilePage = () => {
     getData(url).then((response) => {
       if (response.code) {
         setData(response.data);
+        const res = response.data.reviews;
+        setReview(res);
       } else {
         setData([]);
       }
@@ -36,11 +42,7 @@ const ProfilePage = () => {
       <div className="profile-container">
         <div className="profile-card">
           <div className="profile-image">
-            <img
-              alt="Profile"
-              src="/asset/img.jpg"
-              className="avatar"
-            />
+            <img alt="Profile" src="/asset/img.jpg" className="avatar" />
           </div>
           <div className="profile-details">
             <h2 className="profile-name">{data.userData.name}</h2>
@@ -94,6 +96,21 @@ const ProfilePage = () => {
               ))}
             </ul>
           </div>
+          <>
+            {review?.length === 0 ? (
+              <div style={{ height: "auto", width: "100%" }}>
+                <p>No reviews</p>
+              </div>
+            ) : (
+              <div style={{ maxHeight: "200px", overflowY: "scroll" }}>
+                {review.map((row, index) => (
+                  <div style={{ margin: "18px" }}>
+                    <ReviewCard review={row} />
+                  </div>
+                ))}
+              </div>
+            )}
+          </>
         </div>
       </div>
     </>
@@ -101,3 +118,48 @@ const ProfilePage = () => {
 };
 
 export default ProfilePage;
+
+const ReviewCard = ({ review }) => {
+  const defaultReview = {
+    reviewId: review.reviewId,
+    title: review.quality,
+    rating: review.recommend,
+    reviewer: review?.name,
+    feedback: review.feedback,
+    serviceName: review.serviceName,
+    image: "https://via.placeholder.com/150",
+  };
+  const { title, rating, feedback, serviceName } = {
+    ...defaultReview,
+    ...review,
+  };
+  return (
+    <div
+      className={`review-container bg-gray-700 text-white rounded-lg shadow-lg overflow-hidden mb-4`}
+    >
+      <div className="lg:w-2/3 lg:border-r border-gray-200">
+        <div className="p-6 text-left">
+          <h2 className="text-2xl font-semibold mb-2">
+            {/* <a href={`/profile/${getCookie('userId')}`}> */}
+            {/* <small>Reviewer -</small>
+              {reviewer}
+            </a> */}
+          </h2>
+          <h3 className="text-xl font-semibold mb-2">{title}</h3>
+          <div className="flex items-center mb-2">
+            {/* <StarRatings
+              rating={rating}
+              starRatedColor="#f4c713"
+              numberOfStars={5}
+              starDimension="24px"
+              starSpacing="2px"
+            /> */}
+            <span className="ml-2">{rating} out of 5</span>
+          </div>
+          <p className="mb-4">{feedback}</p>
+          <p className="mb-4">Service: {serviceName}</p>
+        </div>
+      </div>
+    </div>
+  );
+};
